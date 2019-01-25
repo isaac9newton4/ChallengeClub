@@ -1,0 +1,65 @@
+﻿@model ChallengeClub.Models.Account;
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/Style1.css" />
+
+    <script src="~/js/login.js"></script>
+    <script>
+        var memberNumber = "";
+    
+        function insert(num) {
+            document.loginForm.screen.value = document.loginForm.screen.value + num;
+            
+        }
+
+        function back() {
+            var exp = document.loginForm.screen.value;
+            document.loginForm.screen.value = exp.substring(0, exp.length - 1);
+        }
+
+        /*function login() {
+            memberNumber = document.loginForm.screen.value;
+            if (memberNumber == "1001" || memberNumber == "2001") {
+                window.location.href = "";
+                return true;
+            } else {
+                alert("The member number you entered is not exist. \n Please try again.");
+                window.location.href = "";
+                return false;
+            }
+        }*/
+    </script>
+</head>
+
+<body>
+    <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
+
+    <form class="input-area" name="loginForm" id="loginForm" method="post" asp-action="Icon">
+        <h3>Please enter your 4 digits Login number : </h3><br>
+        <input class="login-input" type="text" name="screen" id="screen" size="25" required><br>
+
+        <div class="grid-container">
+            <input class="number-button" type="button" value="  1  " onclick="insert(1)">
+            <input class="number-button" type="button" value="  2  " onclick="insert(2)">
+            <input class="number-button" type="button" value="  3  " onclick="insert(3)">
+
+            <input class="number-button" type="button" value="  4  " onclick="insert(4)">
+            <input class="number-button" type="button" value="  5  " onclick="insert(5)">
+            <input class="number-button" type="button" value="  6  " onclick="insert(6)">
+
+            <input class="number-button" type="button" value="  7  " onclick="insert(7)">
+            <input class="number-button" type="button" value="  8  " onclick="insert(8)">
+            <input class="number-button" type="button" value="  9  " onclick="insert(9)">
+
+            <input class="del-button" type="button" value="Delete" onclick="back()">
+            <input class="number-button" type="button" value="  0  " onclick="insert(0)">
+            <input class="enter-button" type="submit" value="Enter" onclick="login()">
+        </div>
+    </form>
+</body>
+</html>

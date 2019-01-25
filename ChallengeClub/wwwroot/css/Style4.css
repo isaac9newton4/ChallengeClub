@@ -1,0 +1,19 @@
+﻿body {
+    text-align: center;
+}
+
+.icon {
+    margin: 100px;
+}
+
+.btn-login {
+    float: right;
+}
+
+.btn-logout {
+    float: left;
+}
+
+.btn-wrong {
+
+}

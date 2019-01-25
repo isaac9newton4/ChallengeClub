@@ -1,0 +1,54 @@
+﻿body {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    background:url("../images/login_background.jpg");
+}
+
+.input-area {
+    margin-top: 20px;
+}
+
+.login-input {
+    font-size: 30px;
+    text-align: right;
+}
+
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: 200px 200px 200px;
+    background-color: #0f50a0;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.number-button {
+    color: white;
+    background-color: #689CD2;
+    border: 10px solid white;
+    padding: 30px;
+    font-size: 50px;
+    text-align: center;
+}
+
+    .number-button:hover {
+        background-color:#7573D9;
+    }
+
+.del-button {
+    color: white;
+    background-color: #FF9900;
+    border: 10px solid white;
+    padding: 40px 25px 40px 25px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.enter-button {
+    color: white;
+    background-color: #00AA72;
+    border: 10px solid white;
+    padding: 40px 30px 40px 30px;
+    font-size: 40px;
+    text-align: center;
+}

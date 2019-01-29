@@ -17,6 +17,18 @@ namespace ChallengeClub.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult MemberLogin([FromForm]string memberId) 
+        {
+            if (string.IsNullOrWhiteSpace(memberId))
+            {
+                return BadRequest("memberId must not be null or empty");
+            }
+
+            return View();
+
+        }
+
         public IActionResult Icon()
         {
 
@@ -39,6 +51,7 @@ namespace ChallengeClub.Controllers
                 activityId = 1,
                 activityName = "Bowling",
                 startTime = "10 am",
+                //activityImage = "~/images/bowling.jpg",
                 isCheck = false
             });
 
@@ -47,6 +60,7 @@ namespace ChallengeClub.Controllers
                 activityId = 2,
                 activityName = "Pet Therapy",
                 startTime = "1 pm",
+                activityImage = "~/images/pet.png",
                 isCheck = false
             });
 
@@ -55,6 +69,7 @@ namespace ChallengeClub.Controllers
                 activityId = 3,
                 activityName = "Volunteer",
                 startTime = "3 pm",
+                activityImage = "~/images/volunteer.jpg",
                 isCheck = false
             });
 
@@ -63,6 +78,7 @@ namespace ChallengeClub.Controllers
                 activityId = 4,
                 activityName = "Whitey's Dinner",
                 startTime = "6 pm",
+                activityImage = "~/images/dinner.jpg",
                 isCheck = false
             });
 
@@ -71,6 +87,7 @@ namespace ChallengeClub.Controllers
                 activityId = 5,
                 activityName = "Dancing",
                 startTime = "8 pm",
+                activityImage = "~/images/dance.jpg",
                 isCheck = false
             });
 
@@ -98,7 +115,7 @@ namespace ChallengeClub.Controllers
                 startTime = "1 pm",
             };
 
-            DailyActivity wDinner = new DailyActivity
+            DailyActivity Dinner = new DailyActivity
             {
                 activityName = "Whitey's Dinner",
                 startTime = "6 pm",

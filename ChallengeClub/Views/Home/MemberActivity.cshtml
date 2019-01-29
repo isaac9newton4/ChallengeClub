@@ -19,47 +19,23 @@
         <div>
         @using (Html.BeginForm("MemberActivity", "Home"))
         {
-            
+            for (int i = 0; i < Model.dailyActs.Count; i++)
+            {
             <div class="gallery">
                 <a href="">
-                    <img src="~/images/bowling.jpg" height="200" width="200">
+                    @*<img src=@Model.dailyActs[i].activityImage height="200" width="200">*@
                 </a>
-                <div class="desc"><input type="checkbox" @Model.dailyActs[0].isCheck> @Model.dailyActs[0].activityName<br>@Model.dailyActs[0].startTime </div>
+                <div class="desc">@Html.CheckBoxFor(m => Model.dailyActs[i].isCheck) @Model.dailyActs[i].activityName<br>@Model.dailyActs[i].startTime </div>
             </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/pet.png" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[1].isCheck> @Model.dailyActs[1].activityName<br>@Model.dailyActs[1].startTime </div>
-                </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/volunteer.jpg" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[2].isCheck> @Model.dailyActs[2].activityName<br>@Model.dailyActs[2].startTime </div>
-                </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/dinner.jpg" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[3].isCheck> @Model.dailyActs[3].activityName<br>@Model.dailyActs[3].startTime </div>
-                </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/dance.jpg" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[4].isCheck> @Model.dailyActs[4].activityName<br>@Model.dailyActs[4].startTime </div>
-                </div>
+            }
                 <br>
                 <br>
                 <div>
                     <input class="gradient-button gradient-button-1" type="submit" value="Select">
                 </div>
-            
-          }
-       
+        }       
         </div>
-
+        <div>@ViewBag.selectAct</div>
 
         <hr>
 

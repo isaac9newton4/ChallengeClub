@@ -11,6 +11,7 @@ namespace ChallengeClub.Models
         public string activityName { get; set; }
         public string startTime { get; set; }
         public bool isCheck { get; set; }
+        //public string activityImage { get;set }      
     }
 
     public class actList

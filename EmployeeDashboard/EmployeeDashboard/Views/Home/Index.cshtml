@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<div style="color:white" class="col-md-3">
+    <div style="background-color:#234066" class="row">
+        <h1> Club Challenge</h1>
+    </div>
+    <div style="background-color:#192c45" class="row">
+        <h2> Members</h2>
+        <ul>
+            <li><a onclick="redirect('a')" href="#">List of Members</a></li>
+            <li><a onclick="redirect('b')" href="#">Add New Members</a></li>
+            <li><a onclick="redirect('c')" href="#">Attendance</a></li>
+            <li><a onclick="redirect('c')" href="#">Edit Member Activity</a></li>
+        </ul>
+    </div>
+    <div style="background-color:#192c45" class="row">
+        <h2> Calendar</h2>
+        <ul>
+            <li><a onclick="redirect('activities')" href="#">Daily Activities</a></li>
+            <li><a onclick="redirect('e')" href="#">Monthly Events</a></li>
+            <li><a onclick="redirect('f')" href="#">Attendance</a></li>
+        </ul>
+    </div>
+    <div style="background-color:#192c45" class="row">
+        <h2> Reports</h2>
+        <ul>
+            <li><a onclick="redirect('g')" href="#">Daily Reports</a></li>
+            <li><a onclick="redirect('h')" href="#">Monthly Reports</a></li>
+            <li><a onclick="redirect('i')" href="#">Quarterly Reports</a></li>
+
+        </ul>
+        <br />
+        <nbsp></nbsp><a onclick="redirect('home')" href="#">Home</a>
+    </div>
+    <div style="background-color: #192c45;color:#192c45" class="row">
+        x<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    </div>
+</div>
+<div class="col-md-6" id="mainContent">
+     <div style="background-color: deepskyblue; color: white" class="row">
+        <h1>Employee Dashboard</h1>
+    </div>
+
+    <img src="~/images/ClubChallengeLogo.jpg" style="width:550px;height:285px" />
+    <h4>To navigate the dashboard, use the links to the left.</h4>
+</div>
+
+
+<div style="background-color:deepskyblue;color:deepskyblue" class="col-md-3">
+    <h1>AAAAAAAAAAA</h1>
+    <div style="background-color:white;border-left:1px solid #000;height:720px" class="row">
+        <img src="~/images/iPhone Calendar.jpeg" style="width:285px;height:285px" />
+        <div style="background-color:white" class="row"></div>
+    </div>
+</div>
+<script>
+    function redirect(link)
+    {
+        var contents = document.getElementById(link).innerHTML;
+        document.getElementById('mainContent').innerHTML= contents;
+    }
+
+</script>
+
+<div id="activities" hidden>
+    <div style="background-color:deepskyblue;color:white" class="row">
+        <h1>Daily Activities</h1>
+    </div>
+
+
+
+    <div>
+        <h2>Daily Activities</h2>
+        <h5>Click activities to make them available today</h5>
+        <hr /><br /><br />
+
+        <style>
+            #myDIV {
+                margin-bottom: 10px;
+            }
+        </style>
+
+        <div>
+            <div id="myDIV"></div>
+            <br />
+            <form>
+                <button onclick="myFunction()">+ Add Activity</button>
+                <button onclick="submitAlert()">Submit</button>
+            </form>
+            <script>
+function myFunction() {
+    var name = prompt("Activity Name:", "");
+    var hours = prompt("Hours:","");
+        if(name == ""||hours == "")
+        {}
+        else
+        {
+    var btn = document.createElement("BUTTON");
+    var space = document.createTextNode("     ");
+    var text = "Name: "+name+"\n\nHours: "+hours;
+    var t = document.createTextNode(text);
+    btn.appendChild(t);
+    document.getElementById("myDIV").appendChild(btn);
+    document.getElementById("myDIV").appendChild(space);
+        }
+}
+            </script>
+            <br />
+        </div>
+
+    </div>
+</div>
+
+<div id="home" hidden>
+    <div style="background-color: deepskyblue; color: white" class="row">
+        <h1>Employee Dashboard</h1>
+    </div>
+
+    <img src="~/images/ClubChallengeLogo.jpg" style="width:550px;height:285px" />
+    <h4>To navigate the dashboard, use the links to the left.</h4>
+</div>
+
+<script>
+    function submitAlert()
+    {
+        decision = confirm("Are you sure you want to submit these activities?");
+            if(decision == true)
+                {
+                    redirect("home");
+                }
+            else
+                {}
+    }
+</script>
+

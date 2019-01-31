@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\iPhone Calendar.jpeg" />
+    <Content Remove="wwwroot\images\Club Challenge Logo 1.18 %282%29.jpg" />
+    <Content Remove="wwwroot\images\Club Challenge Logo 1.18 %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\iPhone Calendar.jpeg" />
+  </ItemGroup>
+</Project>

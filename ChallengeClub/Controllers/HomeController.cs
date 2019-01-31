@@ -23,6 +23,11 @@ namespace ChallengeClub.Controllers
             return View();
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         public IActionResult Welcome()
         {
 

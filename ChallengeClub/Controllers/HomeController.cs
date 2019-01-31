@@ -136,6 +136,24 @@ namespace ChallengeClub.Controllers
 
             return View();
         }
+        [HttpGet]
+        public IActionResult MemberActivityConfirm()
+        {
+            ViewBag.Message = "Member Activity Confirmation";
+            ViewBag.Members = new List<string>()
+            {
+                "John Smith", "Andy Wilhouse","Mary Stewart","Catherine McDonald", "Anduin Wrynn", "Jaina Proudmoore", "Sylvanas Windrunner"
+            };
+            ViewBag.Activities = new List<string>()
+            {
+                "Recreational Activity","Employment Training", "Computer Lab",
+                "Advocacy Training", "Volunteer", "Arts & Crafts", "Gardening", "Reading/Library",
+                "Exercise", "Social Games", "Family & Friends (After Hours)", "Other"
+            };
+            ViewBag.MemberActivities = new AppContext().MemberActivities.ToArray();
+
+            return View();
+        }
 
         public IActionResult About()
         {

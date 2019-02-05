@@ -42,15 +42,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in viewbag.members)
+            @foreach (var item in ViewBag.Members)
             {
                 <tr>
                     <td>@item</td>
-                    @foreach (var checkbox in viewbag.activities)
+                    @foreach (var checkbox in ViewBag.Activities)
                     {
                         <td>
                             @{
-                                var ma = ((ienumerable<memberactivityconfirm>)viewbag.memberactivities).firstordefault(m => m.member == item && m.activity == checkbox);
+                                var ma = ((IEnumerable<MemberActivityConfirm>)ViewBag.MemberActivityConfirm).FirstOrDefault(m => m.Member == item && m.Activity == checkbox);
                                 if (ma == null)
                                 {
                                     <form method="post" action="/home/create">
@@ -63,7 +63,7 @@
                                 }
                                 else
                                 {
-                                    <form method="post" action="/home/delete/@ma.id">
+                                    <form method="post" action="/home/delete/@ma.Id">
                                         <button type="submit">
                                             &#10004;
                                         </button>

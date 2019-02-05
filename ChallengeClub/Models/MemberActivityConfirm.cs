@@ -10,6 +10,5 @@ namespace ChallengeClub.Models
         public int Id { get; set; }
         public string Member { get; set; }
         public string Activity { get; set; }
-
     }
 }

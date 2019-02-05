@@ -150,7 +150,7 @@ namespace ChallengeClub.Controllers
                 "Advocacy Training", "Volunteer", "Arts & Crafts", "Gardening", "Reading/Library",
                 "Exercise", "Social Games", "Family & Friends (After Hours)", "Other"
             };
-            ViewBag.MemberActivities = new AppContext().MemberActivities.ToArray();
+            //ViewBag.MemberActivities = new AppContext().MemberActivities.ToArray();
 
             return View();
         }

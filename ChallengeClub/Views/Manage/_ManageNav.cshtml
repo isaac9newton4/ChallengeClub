@@ -1,4 +1,5 @@
 ﻿@using ChallengeClub.Views.Manage
+@using Microsoft.AspNetCore.Identity;
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

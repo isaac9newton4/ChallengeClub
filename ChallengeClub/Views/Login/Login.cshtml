@@ -11,10 +11,10 @@
     <script src="~/js/login.js"></script>
     <script>
         var memberNumber = "";
-    
+
         function insert(num) {
             document.loginForm.MemberId.value = document.loginForm.MemberId.value + num;
-            
+
         }
 
         function back() {
@@ -25,14 +25,13 @@
 </head>
 
 <body>
+
     <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
-
-    <form class="input-area" name="loginForm" id="loginForm" method="post" asp-action="Icon">
+    <div class="employee_login"><a href=""><h4><b>Employee Login</b></h4></a></div>
+    <form class="input-area" name="loginForm" id="loginForm" method="post" action="login">
         <h3>Please enter your 4 digits Login number : </h3><br>
-        <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required>
-        @*<span class="">@Model.ErrMessage</span>*@
-        <br>
-
+        <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required><br>
+        @*<span>@Model.message</span>*@
         <div class="grid-container">
             <input class="number-button" type="button" value="  1  " onclick="insert(1)">
             <input class="number-button" type="button" value="  2  " onclick="insert(2)">

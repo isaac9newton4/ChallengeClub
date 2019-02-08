@@ -1,6 +1,6 @@
 ﻿@model ChallengeClub.Models.ActivityList;
 @{
-    ViewData["Title"] = "Welcome Page";
+    ViewData["Title"] = "Daily Activity";
 }
 
 <html>
@@ -17,7 +17,7 @@
         <h3>Today's Activities : </h3><br>
 
         <div>
-            @using (Html.BeginForm("MemberActivity", "Home"))
+            @using (Html.BeginForm("MemberActivity", "MemberActivity"))
             {
                 for (int i = 0; i < Model.DailyActs.Count; i++)
                 {
@@ -26,6 +26,7 @@
                             <img src="@Model.DailyActs[i].ActivityImage" height="200" width="200">
                         </a>
                         <div class="desc">
+
                             @Html.CheckBoxFor(m => Model.DailyActs[i].IsCheck)
                             @Model.DailyActs[i].ActivityName<br>
                             @Model.DailyActs[i].StartTime
@@ -34,11 +35,7 @@
                             @Html.HiddenFor(m => Model.DailyActs[i].ActivityName)
                             @Html.HiddenFor(m => Model.DailyActs[i].StartTime)
                             @Html.HiddenFor(m => Model.DailyActs[i].IsCheck)
-                            @Html.HiddenFor(m => Model.SelectedActs[i].ActivityImage)
-                            @Html.HiddenFor(m => Model.SelectedActs[i].ActivityId)
-                            @Html.HiddenFor(m => Model.SelectedActs[i].ActivityName)
-                            @Html.HiddenFor(m => Model.SelectedActs[i].StartTime)
-                            @Html.HiddenFor(m => Model.SelectedActs[i].IsCheck)
+                         
                         </div>
                     </div>
                 }
@@ -52,25 +49,26 @@
         <br>
         <br>
         <br>
-        <div><h2>@ViewBag.SelectedAct</h2></div>
+        @*<div><h3>@ViewBag.SelectedAct</h3></div>*@
         <br>
         <br>
         <br>
         <hr>
 
+
         <div>
             <h3>Your Activities : </h3><br>
             <div id="selectionScreen">
                 <table class="table table-striped ">
-                    @using (Html.BeginForm("MemberActivity", "Home"))
+                    @using (Html.BeginForm("MemberActivity", "MemberActivity"))
                     {
 
 
-                        for (int i = 0; i < Model.DailyActs.Count; i++)
+                        for (int i = 0; i < Model.SelectedActs.Count; i++)
                         {
                             <tr>
-                                <td>@Model.DailyActs[i].StartTime</td>
-                                <td>@Model.DailyActs[i].ActivityName</td>
+                                <td>@Model.SelectedActs[i].StartTime</td>
+                                <td>@Model.SelectedActs[i].ActivityName</td>
                                 <td><a href="">Remove</a></td>
                             </tr>
                         }
@@ -98,6 +96,7 @@
         </div>
         <br>
 
-
 </body>
 </html>
+
+

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ChallengeClub.Models;
-using System.Text;
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ChallengeClub.Controllers
 {
-    public class HomeController : Controller
+    public class EmployerLoginController : Controller
     {
+        // GET: /<controller>/
         public IActionResult Index()
         {
             return View();

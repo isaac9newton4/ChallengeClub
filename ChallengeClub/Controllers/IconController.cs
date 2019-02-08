@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ChallengeClub.Models;
-using System.Text;
 
 namespace ChallengeClub.Controllers
 {
-    public class HomeController : Controller
+    public class IconController : Controller
     {
-        public IActionResult Index()
+        [Route("Icon")]
+        public IActionResult Icon()
         {
             return View();
         }

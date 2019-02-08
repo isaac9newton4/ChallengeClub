@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ChallengeClub.Models;
-using System.Text;
 
 namespace ChallengeClub.Controllers
 {
-    public class HomeController : Controller
+    public class LogoutController : Controller
     {
-        public IActionResult Index()
+        [Route("Logout")]
+        public IActionResult Logout()
         {
+
             return View();
         }
     }

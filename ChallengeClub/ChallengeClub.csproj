@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ApplicationIcon />
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,4 +12,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\EmployerLogin\" />
+    <Folder Include="Views\Employee\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Employee\_ViewStart.cshtml" />
+    <Content Remove="Views\Employee\_ELayout.cshtml" />
+  </ItemGroup>
 </Project>

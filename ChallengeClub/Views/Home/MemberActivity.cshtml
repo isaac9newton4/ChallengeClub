@@ -1,4 +1,4 @@
-﻿@model ChallengeClub.Models.actList;
+﻿@model ChallengeClub.Models.ActivityList;
 @{
     ViewData["Title"] = "Welcome Page";
 }
@@ -17,106 +17,87 @@
         <h3>Today's Activities : </h3><br>
 
         <div>
-        @using (Html.BeginForm("MemberActivity", "Home"))
-        {
-            
-            <div class="gallery">
-                <a href="">
-                    <img src="~/images/bowling.jpg" height="200" width="200">
-                </a>
-                <div class="desc"><input type="checkbox" @Model.dailyActs[0].isCheck> @Model.dailyActs[0].activityName<br>@Model.dailyActs[0].startTime </div>
-            </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/pet.png" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[1].isCheck> @Model.dailyActs[1].activityName<br>@Model.dailyActs[1].startTime </div>
-                </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/volunteer.jpg" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[2].isCheck> @Model.dailyActs[2].activityName<br>@Model.dailyActs[2].startTime </div>
-                </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/dinner.jpg" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[3].isCheck> @Model.dailyActs[3].activityName<br>@Model.dailyActs[3].startTime </div>
-                </div>
-                <div class="gallery">
-                    <a href="">
-                        <img src="~/images/dance.jpg" height="200" width="200">
-                    </a>
-                    <div class="desc"><input type="checkbox" @Model.dailyActs[4].isCheck> @Model.dailyActs[4].activityName<br>@Model.dailyActs[4].startTime </div>
-                </div>
+            @using (Html.BeginForm("MemberActivity", "Home"))
+            {
+                for (int i = 0; i < Model.DailyActs.Count; i++)
+                {
+                    <div class="gallery">
+                        <a href="">
+                            <img src="@Model.DailyActs[i].ActivityImage" height="200" width="200">
+                        </a>
+                        <div class="desc">
+                            @Html.CheckBoxFor(m => Model.DailyActs[i].IsCheck)
+                            @Model.DailyActs[i].ActivityName<br>
+                            @Model.DailyActs[i].StartTime
+                            @Html.HiddenFor(m => Model.DailyActs[i].ActivityImage)
+                            @Html.HiddenFor(m => Model.DailyActs[i].ActivityId)
+                            @Html.HiddenFor(m => Model.DailyActs[i].ActivityName)
+                            @Html.HiddenFor(m => Model.DailyActs[i].StartTime)
+                            @Html.HiddenFor(m => Model.DailyActs[i].IsCheck)
+                            @Html.HiddenFor(m => Model.SelectedActs[i].ActivityImage)
+                            @Html.HiddenFor(m => Model.SelectedActs[i].ActivityId)
+                            @Html.HiddenFor(m => Model.SelectedActs[i].ActivityName)
+                            @Html.HiddenFor(m => Model.SelectedActs[i].StartTime)
+                            @Html.HiddenFor(m => Model.SelectedActs[i].IsCheck)
+                        </div>
+                    </div>
+                }
                 <br>
                 <br>
-                <div>
+                <div class="">
                     <input class="gradient-button gradient-button-1" type="submit" value="Select">
                 </div>
-            
-          }
-       
+            }
         </div>
-
-
+        <br>
+        <br>
+        <br>
+        <div><h2>@ViewBag.SelectedAct</h2></div>
+        <br>
+        <br>
+        <br>
         <hr>
 
         <div>
-            <table>
-                @using (Html.BeginForm("MemberActivity", "Home"))
-                {
-
-
-                    for (int i = 0; i < Model.dailyActs.Count; i++)
+            <h3>Your Activities : </h3><br>
+            <div id="selectionScreen">
+                <table class="table table-striped ">
+                    @using (Html.BeginForm("MemberActivity", "Home"))
                     {
+
+
+                        for (int i = 0; i < Model.DailyActs.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model.DailyActs[i].StartTime</td>
+                                <td>@Model.DailyActs[i].ActivityName</td>
+                                <td><a href="">Remove</a></td>
+                            </tr>
+                        }
+
+                        @*<tr>
+                                            <td>3 pm</td>
+                                            <td>Volunteer</td>
+                                            <td><a href="">Remove</a></td>
+                                            </tr>
                         <tr>
-                            <td>
-                                @Html.CheckBoxFor(m => Model.dailyActs[i].isCheck)
-                                @Model.dailyActs[i].activityName
-                                @Model.dailyActs[i].startTime
-                                @Html.HiddenFor(m => Model.dailyActs[i].activityId)
-                                @Html.HiddenFor(m => Model.dailyActs[i].activityName)
-                                @Html.HiddenFor(m => Model.dailyActs[i].startTime)
-                            </td>
+                            <td>6 pm</td>
+                            <td>Whitey's Dinner</td>
+                            <td><a href="">Remove</a></td>
+                        </tr>*@
+
+                        <tr>
+                            <td></td>
+                            <td><a asp-action="Logout"><input class="gradient-button gradient-button-2" type="button" value="Confirm"></a></td>
+                            <td></td>
                         </tr>
+
                     }
-                    <tr><td></td></tr>
-                    <tr><td><input type="submit" value="Select"></td></tr>
-                }
-
-            </table>
-        </div>
-        <div>@ViewBag.selectAct</div>
-
-        <hr>
-        <h3>Your activities : </h3><br>
-        <div id="selectionScreen">
-            <table class="table table-striped ">
-
-                <tr>
-                    <td>10 am</td>
-                    <td>Bowling</td>
-                    <td><a href="">Remove</a></td>
-                </tr>
-                <tr>
-                    <td>3 pm</td>
-                    <td>Volunteer</td>
-                    <td><a href="">Remove</a></td>
-                </tr>
-                <tr>
-                    <td>6 pm</td>
-                    <td>Whitey's Dinner</td>
-                    <td><a href="">Remove</a></td>
-                </tr>
-
-            </table>
+                </table>
+            </div>
         </div>
         <br>
-        <a asp-action="Logout"><input class="gradient-button gradient-button-2" type="button" value="Confirm"></a>
 
-    </>
 
 </body>
 </html>

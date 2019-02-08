@@ -13,26 +13,14 @@
         var memberNumber = "";
     
         function insert(num) {
-            document.loginForm.screen.value = document.loginForm.screen.value + num;
+            document.loginForm.MemberId.value = document.loginForm.MemberId.value + num;
             
         }
 
         function back() {
-            var exp = document.loginForm.screen.value;
-            document.loginForm.screen.value = exp.substring(0, exp.length - 1);
+            var exp = document.loginForm.MemberId.value;
+            document.loginForm.MemberId.value = exp.substring(0, exp.length - 1);
         }
-
-        /*function login() {
-            memberNumber = document.loginForm.screen.value;
-            if (memberNumber == "1001" || memberNumber == "2001") {
-                window.location.href = "";
-                return true;
-            } else {
-                alert("The member number you entered is not exist. \n Please try again.");
-                window.location.href = "";
-                return false;
-            }
-        }*/
     </script>
 </head>
 
@@ -41,7 +29,9 @@
 
     <form class="input-area" name="loginForm" id="loginForm" method="post" asp-action="Icon">
         <h3>Please enter your 4 digits Login number : </h3><br>
-        <input class="login-input" type="text" name="screen" id="screen" size="25" required><br>
+        <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required>
+        @*<span class="">@Model.ErrMessage</span>*@
+        <br>
 
         <div class="grid-container">
             <input class="number-button" type="button" value="  1  " onclick="insert(1)">

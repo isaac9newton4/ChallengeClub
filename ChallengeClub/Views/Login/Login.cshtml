@@ -13,24 +13,25 @@
         var memberNumber = "";
 
         function insert(num) {
-            document.loginForm.memberId.value = document.loginForm.memberId.value + num;
+            document.loginForm.MemberId.value = document.loginForm.MemberId.value + num;
 
         }
 
         function back() {
-            var exp = document.loginForm.memberId.value;
-            document.loginForm.memberId.value = exp.substring(0, exp.length - 1);
+            var exp = document.loginForm.MemberId.value;
+            document.loginForm.MemberId.value = exp.substring(0, exp.length - 1);
         }
     </script>
 </head>
 
 <body>
+
     <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
-
-    <form class="input-area" name="loginForm" id="loginForm" method="post" action="/Login">
+    <div class="employee_login"><a href=""><h4><b>Employee Login</b></h4></a></div>
+    <form class="input-area" name="loginForm" id="loginForm" method="post" action="login">
         <h3>Please enter your 4 digits Login number : </h3><br>
-        <input class="login-input" type="text" name="memberId" id="memberId" size="25" required><br>
-
+        <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required><br>
+        @*<span>@Model.message</span>*@
         <div class="grid-container">
             <input class="number-button" type="button" value="  1  " onclick="insert(1)">
             <input class="number-button" type="button" value="  2  " onclick="insert(2)">

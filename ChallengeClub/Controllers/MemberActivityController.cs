@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using ChallengeClub.Models;
+using System.Text;
+
+namespace ChallengeClub.Controllers
+{
+    [Route("MemberActivity")]
+    public class MemberActivityController : Controller
+    {
+        [HttpGet]
+        public IActionResult MemberActivity()
+        {
+            List<MemberActivity> DailyList = new List<MemberActivity>();
+
+            DailyList.Add(new MemberActivity()
+            {
+                ActivityId = 1,
+                ActivityName = "Bowling",
+                StartTime = "10 am",
+                ActivityImage = "/images/bowling.jpg",
+                IsCheck = false
+            });
+
+            DailyList.Add(new MemberActivity()
+            {
+                ActivityId = 2,
+                ActivityName = "Pet Therapy",
+                StartTime = "1 pm",
+                ActivityImage = "/images/pet.png",
+                IsCheck = false
+            });
+
+            DailyList.Add(new MemberActivity()
+            {
+                ActivityId = 3,
+                ActivityName = "Volunteer",
+                StartTime = "3 pm",
+                ActivityImage = "/images/volunteer.jpg",
+                IsCheck = false
+            });
+
+            DailyList.Add(new MemberActivity()
+            {
+                ActivityId = 4,
+                ActivityName = "Whitey's Dinner",
+                StartTime = "6 pm",
+                ActivityImage = "/images/dinner.jpg",
+                IsCheck = false
+            });
+
+            DailyList.Add(new MemberActivity()
+            {
+                ActivityId = 5,
+                ActivityName = "Dancing",
+                StartTime = "8 pm",
+                ActivityImage = "/images/dance.jpg",
+                IsCheck = false
+            });
+
+            ActivityList ShowList = new ActivityList();
+
+            ShowList.DailyActs = DailyList;
+
+            ShowList.SelectedActs = new List<MemberActivity> { };
+
+            return View(ShowList);
+        }
+
+
+        [HttpPost]
+        public IActionResult MemberActivity(ActivityList SelectedActivity)
+        {
+           /* StringBuilder sb = new StringBuilder();
+            foreach (var thing in SelectedActivity.DailyActs)
+            {
+                if (thing.IsCheck)
+                {
+                    sb.Append(thing.ActivityName + " at " + thing.StartTime + ",");
+                
+                }
+            }
+            ViewBag.SelectedAct = "Your Activities are " + sb.ToString();*/
+
+
+            List<MemberActivity> TableList = new List<MemberActivity>();
+
+             foreach (var thing in SelectedActivity.SelectedActs) {
+                 if (thing.IsCheck) {
+                    TableList.Add(thing);
+                 }
+             }
+             ActivityList ConfirmList = new ActivityList();
+             ConfirmList.DailyActs = TableList;
+             ConfirmList.SelectedActs = TableList;
+            return View(ConfirmList);
+        }
+    }
+    
+}

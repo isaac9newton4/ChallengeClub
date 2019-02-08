@@ -8,8 +8,9 @@ namespace ChallengeClub.Models
 {
     public class Account
     {
-        
-        public int memberID { get; set; }
-        
+        [Required]
+        [StringLength(4,MinimumLength=4, ErrorMessage = "Member ID must be 4 digit.")]
+        public string MemberId { get; set; }
+        public string message { get; set; }    
     }
 }

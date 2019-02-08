@@ -10,23 +10,55 @@ namespace ChallengeClub.Controllers
     public class LoginController : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
         
         [HttpPost]
-        public IActionResult LoginPost([FromForm]string memberId)
+        public IActionResult Login([FromForm]string memberId)
         {
             // Validation
+            /*string message = "";
             if (string.IsNullOrWhiteSpace(memberId))
             {
-                return BadRequest("memberId must not be null or empty");
+                message = "Member ID can not be null or contain any white space.";
             }
 
+            if (memberId.Length != 4)
+            {
+                message = "Member ID must be 4 digits";
+            }
 
+            int num = 0;
+            bool isNumber = int.TryParse(memberId, out num);
+            if (isNumber == false)
+            {
+                message = "Member ID must be 4 digits number";
+            }
 
-            return View();
+            return message;*/
+
+            if (string.IsNullOrWhiteSpace(memberId))
+            {
+                return BadRequest("Member ID must not be null or empty");
+
+            }
+
+            if (memberId.Length != 4)
+            {
+                return BadRequest("Member ID must be 4 digit");
+            }
+
+            int num = 0;
+            bool isNumber = int.TryParse(memberId, out num);
+            if (isNumber == false)
+            {
+                return BadRequest("Member ID must be 4 digit number");
+            }
+
+            return View("Views/Icon/Icon.cshtml");
+
         }
     }
 }

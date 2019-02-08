@@ -13,13 +13,13 @@
         var memberNumber = "";
     
         function insert(num) {
-            document.loginForm.memberId.value = document.loginForm.memberId.value + num;
+            document.loginForm.MemberId.value = document.loginForm.MemberId.value + num;
             
         }
 
         function back() {
-            var exp = document.loginForm.memberId.value;
-            document.loginForm.memberId.value = exp.substring(0, exp.length - 1);
+            var exp = document.loginForm.MemberId.value;
+            document.loginForm.MemberId.value = exp.substring(0, exp.length - 1);
         }
     </script>
 </head>
@@ -29,7 +29,9 @@
 
     <form class="input-area" name="loginForm" id="loginForm" method="post" asp-action="Icon">
         <h3>Please enter your 4 digits Login number : </h3><br>
-        <input class="login-input" type="text" name="memberId" id="memberId" size="25" required><br>
+        <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required>
+        @*<span class="">@Model.ErrMessage</span>*@
+        <br>
 
         <div class="grid-container">
             <input class="number-button" type="button" value="  1  " onclick="insert(1)">

@@ -56,7 +56,7 @@ namespace ChallengeClub
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Login}/{id?}");
+                    template: "{controller=LoginController}/{action=Login}/{id?}");
             });
         }
     }

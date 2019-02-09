@@ -38,23 +38,13 @@ namespace ChallengeClub.Controllers
             }
 
             return message;*/
-
-            if (string.IsNullOrWhiteSpace(memberId))
-            {
-                return BadRequest("Member ID must not be null or empty");
-
-            }
-
-            if (memberId.Length != 4)
-            {
-                return BadRequest("Member ID must be 4 digit");
-            }
-
             int num = 0;
             bool isNumber = int.TryParse(memberId, out num);
-            if (isNumber == false)
+            if (string.IsNullOrWhiteSpace(memberId) || memberId.Length != 4 || isNumber == false)
             {
-                return BadRequest("Member ID must be 4 digit number");
+                ViewBag.Error = "The number is Invalid.  Please Try Again.";
+                return View("Views/Login/Login.cshtml");
+
             }
 
             return View("Views/Icon/Icon.cshtml");

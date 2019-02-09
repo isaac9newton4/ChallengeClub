@@ -13,7 +13,7 @@ namespace ChallengeClub.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("Views/Login/Login.cshtml");
         }
     }
 }

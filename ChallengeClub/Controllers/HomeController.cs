@@ -9,11 +9,13 @@ using System.Text;
 
 namespace ChallengeClub.Controllers
 {
+    [Route("/")]
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
-            return View("Views/Login/Login.cshtml");
+            return new RedirectResult("/Login");
         }
     }
 }

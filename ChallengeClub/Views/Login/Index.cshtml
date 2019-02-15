@@ -28,8 +28,8 @@
 <body>
 
     <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
-    <div class="employee_login"><a asp-controller="EmployerLogin" asp-action="Index"><h3><b>Employee Login</b></h3></a></div>
-    <form class="input-area" name="loginForm" id="loginForm" method="post" action="login">
+    <div class="employee_login"><a asp-controller="EmployeeLogin" asp-action="Index"><h3><b>Employee Login</b></h3></a></div>
+    <form class="input-area" name="loginForm" id="loginForm" method="post">
         <h3>Please enter your 4 digits Login number : </h3><br>
         <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required><br>
         <span class="login_error">@ViewBag.Error</span>

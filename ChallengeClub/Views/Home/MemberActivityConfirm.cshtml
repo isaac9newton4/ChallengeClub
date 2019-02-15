@@ -1,0 +1,80 @@
+﻿@using ChallengeClub.Models
+
+
+<br />
+<br />
+
+@{
+    ViewBag.Title = "Confirm Member Activities";
+}
+<html>
+<body>
+
+    <h1>Verify the activities for each member for today</h1>
+    <br />
+    <br />
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                @foreach (var item in ViewBag.Activities)  
+                {
+                    <th>@item</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Members)
+            {
+                <tr>
+                    <td>@item</td>
+                    @foreach (var checkbox in ViewBag.Activities)
+                    {
+                        <td>
+                            @{
+                                var ma = ((IEnumerable<MemberActivityConfirm>)ViewBag.MemberActivityConfirm).FirstOrDefault(m => m.Member == item && m.Activity == checkbox);
+                                if (ma == null)
+                                {
+                                    <form method="post" action="/home/create">
+                                        <input type="hidden" value="@item" name="member" />
+                                        <input type="hidden" value="@checkbox" name="activity" />
+                                        <button type="submit">
+                                            &#10061;
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form method="post" action="/home/delete/@ma.Id">
+                                        <button type="submit">
+                                            &#10004;
+                                        </button>
+                                    </form>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

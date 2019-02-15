@@ -2,11 +2,12 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = null;
 }
 <html>
 <head>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/Style1.css" />
+    <link rel="stylesheet" href="~/css/Login.css" />
 
     <script src="~/js/login.js"></script>
     <script>
@@ -27,11 +28,11 @@
 <body>
 
     <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
-    <div class="employee_login"><a href=""><h4><b>Employee Login</b></h4></a></div>
-    <form class="input-area" name="loginForm" id="loginForm" method="post" action="login">
+    <div class="employee_login"><a asp-controller="EmployeeLogin" asp-action="Index"><h3><b>Employee Login</b></h3></a></div>
+    <form class="input-area" name="loginForm" id="loginForm" method="post">
         <h3>Please enter your 4 digits Login number : </h3><br>
         <input class="login-input" type="text" name="MemberId" id="MemberId" size="25" required><br>
-        @*<span>@Model.message</span>*@
+        <span class="login_error">@ViewBag.Error</span>
         <div class="grid-container">
             <input class="number-button" type="button" value="  1  " onclick="insert(1)">
             <input class="number-button" type="button" value="  2  " onclick="insert(2)">

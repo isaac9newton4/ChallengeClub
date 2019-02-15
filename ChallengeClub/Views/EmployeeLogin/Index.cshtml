@@ -1,0 +1,27 @@
+﻿@model ChallengeClub.Models.EmployeeLoginView
+@{
+    ViewData["Title"] = "Employee Login";
+    Layout = null;
+}
+<html>
+    <body>
+        @using (Html.BeginForm("Index", "EmployeeLogin", FormMethod.Post)) {
+            <h3>@ViewBag.Error</h3>
+            <table cellpadding="2" cellspacing="2">
+            <tr>
+                <td>@Html.LabelFor(model => model.EmployeeAccount.Username)</td>
+                <td>@Html.TextBoxFor(model => model.EmployeeAccount.Username)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.EmployeeAccount.Password)</td>
+                <td>@Html.PasswordFor(model => model.EmployeeAccount.Password)</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Login"></td>
+            </tr>
+        </table>
+
+        }
+    </body>
+</html>

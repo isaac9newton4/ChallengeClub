@@ -54,6 +54,15 @@
 }
 
 .employee_login {
-    float: right;
-    margin-right: 0px;
+    position: absolute;
+    top: 5%;
+    left: 89%;
+}
+
+.login_error {
+    position: absolute;
+    top: 25%;
+    left: 65%;
+    font-size: 20px;
+    color:red;
 }

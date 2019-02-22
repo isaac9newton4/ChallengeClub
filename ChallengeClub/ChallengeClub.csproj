@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\EmployerLogin\" />
+    <Folder Include="Views\EmployeeLogin\" />
     <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>

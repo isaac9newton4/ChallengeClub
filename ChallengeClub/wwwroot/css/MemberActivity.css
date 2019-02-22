@@ -2,25 +2,6 @@
     text-align: center;
 }
 
-div.welcome_header {
-    margin-top: 0;
-    width: 100%;
-    height: 300px;
-    line-height: 300px;
-    text-align: center;
-    vertical-align: middle;
-    background-image:url(../images/welcome_banner.jpg) ;
-}
-
-span.welcome_header {
-    color: #ffffff;
-    font-size: 300%;
-}
-
-div.havefun{
-    margin-top: 100px;
-    margin-bottom: 200px;
-}
 
 div.gallery {
     margin: 10px;
@@ -106,3 +87,8 @@ div.desc {
     .gradient-button-4:hover {
         background-position: right center;
     }
+
+.activity_page {
+    width: 1200px;
+    margin: 0 auto;
+}

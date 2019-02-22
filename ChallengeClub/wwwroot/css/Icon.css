@@ -1,0 +1,27 @@
+﻿body {
+    margin-top: 0px;
+    text-align: center;
+}
+
+.icon {
+    margin: 100px;
+}
+
+.btn-login {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
+.btn-logout {
+    position: absolute;
+    top: 50%;
+    left: 64%;
+}
+
+.btn-notme {
+    position: absolute;
+    top: 50%;
+    left: 46%;
+}
+

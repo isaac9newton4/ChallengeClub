@@ -1,18 +1,20 @@
 ﻿@model ChallengeClub.Models.ActivityList;
 @{
     ViewData["Title"] = "Daily Activity";
+    
 }
+
 
 <html>
 <head>
-    <link rel="stylesheet" href="~/css/Style2.css" />
+    <link rel="stylesheet" href="~/css/MemberActivity.css" />
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
 
 </head>
 <body>
 
 
-    <div>
+    <div class="activity_page">
         <br>
         <h3>Today's Activities : </h3><br>
 
@@ -35,21 +37,15 @@
                             @Html.HiddenFor(m => Model.DailyActs[i].ActivityName)
                             @Html.HiddenFor(m => Model.DailyActs[i].StartTime)
                             @Html.HiddenFor(m => Model.DailyActs[i].IsCheck)
-                         
                         </div>
                     </div>
                 }
                 <br>
                 <br>
-                <div class="">
-                    <input class="gradient-button gradient-button-1" type="submit" value="Select">
-                </div>
+                <div>
+                    <input class="gradient-button gradient-button-1" type="submit" value="Select"></div>
             }
         </div>
-        <br>
-        <br>
-        <br>
-        @*<div><h3>@ViewBag.SelectedAct</h3></div>*@
         <br>
         <br>
         <br>
@@ -58,44 +54,29 @@
 
         <div>
             <h3>Your Activities : </h3><br>
-            <div id="selectionScreen">
-                <table class="table table-striped ">
-                    @using (Html.BeginForm("MemberActivity", "MemberActivity"))
+            <table class="table table-striped ">
+                @using (Html.BeginForm("MemberActivity", "MemberActivity"))
+                {
+
+                <tr>
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Option</th>
+                </tr>
+                    for (int i = 0; i < Model.SelectedActs.Count; i++)
                     {
-
-
-                        for (int i = 0; i < Model.SelectedActs.Count; i++)
-                        {
-                            <tr>
-                                <td>@Model.SelectedActs[i].StartTime</td>
-                                <td>@Model.SelectedActs[i].ActivityName</td>
-                                <td><a href="">Remove</a></td>
-                            </tr>
-                        }
-
-                        @*<tr>
-                                            <td>3 pm</td>
-                                            <td>Volunteer</td>
-                                            <td><a href="">Remove</a></td>
-                                            </tr>
                         <tr>
-                            <td>6 pm</td>
-                            <td>Whitey's Dinner</td>
-                            <td><a href="">Remove</a></td>
-                        </tr>*@
-
-                        <tr>
-                            <td></td>
-                            <td><a asp-action="Logout"><input class="gradient-button gradient-button-2" type="button" value="Confirm"></a></td>
-                            <td></td>
+                            <td>@Model.SelectedActs[i].StartTime</td>
+                            <td>@Model.SelectedActs[i].ActivityName</td>
+                            <td>@Html.ActionLink("Remove", "Remove")</td>
                         </tr>
-
                     }
-                </table>
-            </div>
-        </div>
-        <br>
 
+                }
+            </table>
+            <a asp-controller="Logout" asp-action="Logout"><input class="gradient-button gradient-button-2" type="button" value="Confirm"></a>
+        </div>
+        </div>
 </body>
 </html>
 

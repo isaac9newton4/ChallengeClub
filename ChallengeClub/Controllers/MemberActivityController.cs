@@ -65,16 +65,17 @@ namespace ChallengeClub.Controllers
 
             ShowList.DailyActs = DailyList;
 
-            ShowList.SelectedActs = new List<MemberActivity> { };
+            ShowList.SelectedActs = new List<MemberActivity> { }; 
 
             return View(ShowList);
         }
 
+    
 
         [HttpPost]
-        public IActionResult MemberActivity(ActivityList SelectedActivity)
+        public IActionResult MemberActivity(ActivityList ls)
         {
-           /* StringBuilder sb = new StringBuilder();
+            /*StringBuilder sb = new StringBuilder();
             foreach (var thing in SelectedActivity.DailyActs)
             {
                 if (thing.IsCheck)
@@ -88,16 +89,17 @@ namespace ChallengeClub.Controllers
 
             List<MemberActivity> TableList = new List<MemberActivity>();
 
-             foreach (var thing in SelectedActivity.SelectedActs) {
-                 if (thing.IsCheck) {
-                    TableList.Add(thing);
+             foreach (var item in ls.DailyActs) {
+                 if (item.IsCheck) {
+                    TableList.Add(item);
                  }
              }
              ActivityList ConfirmList = new ActivityList();
-             ConfirmList.DailyActs = TableList;
-             ConfirmList.SelectedActs = TableList;
+            
+            ConfirmList.SelectedActs = TableList;
+            ConfirmList.DailyActs = ls.DailyActs;
+
             return View(ConfirmList);
         }
     }
-    
 }

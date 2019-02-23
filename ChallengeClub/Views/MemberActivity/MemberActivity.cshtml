@@ -68,7 +68,7 @@
                         <tr>
                             <td>@Model.SelectedActs[i].StartTime</td>
                             <td>@Model.SelectedActs[i].ActivityName</td>
-                            <td>@Html.ActionLink("Remove", "Remove")</td>
+                            <td>@Html.ActionLink("Delete", "Delete", new {id=@Model.SelectedActs[i].ActivityId, list=Model.SelectedActs})</td>
                         </tr>
                     }
 

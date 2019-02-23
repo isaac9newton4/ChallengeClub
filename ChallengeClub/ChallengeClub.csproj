@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <NoWin32Manifest>true</NoWin32Manifest>
     <ApplicationIcon />
+    <UserSecretsId>15fc770c-b50a-49fa-ac87-6ef2a0e03e4f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

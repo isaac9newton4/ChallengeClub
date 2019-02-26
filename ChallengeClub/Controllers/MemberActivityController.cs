@@ -91,18 +91,25 @@ namespace ChallengeClub.Controllers
             return View(ConfirmList);
         }
 
-        public IActionResult Delete(int activityId, ActivityList list)
+        public IActionResult Delete(int activityId, List<MemberActivity> list)
         {
-            foreach (var delete in list.SelectedActs.ToList())
-            {
-                if (delete.ActivityId == activityId)
-                {
-                    //list.Remove(delete);
+
+            /*foreach (var delete in list.SelectedActs.ToList())
+              {
+                  if (delete.ActivityId == activityId)
+                  {
+                      list.Remove(delete);
+                  }
+              }*/
+
+            for (int i = 0; i < list.Count; i++) {
+                if (list[i].ActivityId == activityId) {
+                    list.RemoveAt(i);
                 }
             }
-
+              
             ActivityList DeleteList = new ActivityList();
-            //DeleteList.SelectedActs = list;
+            DeleteList.SelectedActs = list;
 
             return View(DeleteList);
         }

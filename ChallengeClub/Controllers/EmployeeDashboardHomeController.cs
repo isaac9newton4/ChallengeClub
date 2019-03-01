@@ -11,6 +11,7 @@ namespace ChallengeClub.Controllers
     public class EmployeeDashboardHomeController : Controller
     {
         // GET: /<controller>/
+        [Route("Employee")]
         public IActionResult EmployeeDashboardHome()
         {
             return View();

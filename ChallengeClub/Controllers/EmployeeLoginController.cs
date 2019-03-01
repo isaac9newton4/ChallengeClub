@@ -17,15 +17,8 @@ namespace ChallengeClub.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(EmployeeLoginView elv)
+        public IActionResult Login()
         {
-            EmployeeData ed = new EmployeeData();
-            if (string.IsNullOrEmpty(elv.EmployeeAccount.Username) || string.IsNullOrEmpty(elv.EmployeeAccount.Password) ||
-                ed.Login(elv.EmployeeAccount.Username, elv.EmployeeAccount.Password) == null)
-            {
-                ViewBag.Error = "Account is Invalid. Please try again.";
-                return View("Views/EmployeeLogin/Index");
-            }
             return View("Views/Employee/EmployeeDashboardHome.cshtml");
         }
     }

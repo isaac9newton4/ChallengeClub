@@ -1,27 +1,28 @@
-﻿@model ChallengeClub.Models.EmployeeLoginView
+﻿@model ChallengeClub.Models.Account;
+
 @{
-    ViewData["Title"] = "Employee Login";
+    ViewData["Title"] = "Log in";
     Layout = null;
 }
 <html>
-    <body>
-        @using (Html.BeginForm("Index", "EmployeeLogin", FormMethod.Post)) {
-            <h3>@ViewBag.Error</h3>
-            <table cellpadding="2" cellspacing="2">
-            <tr>
-                <td>@Html.LabelFor(model => model.EmployeeAccount.Username)</td>
-                <td>@Html.TextBoxFor(model => model.EmployeeAccount.Username)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.EmployeeAccount.Password)</td>
-                <td>@Html.PasswordFor(model => model.EmployeeAccount.Password)</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><input type="submit" value="Login"></td>
-            </tr>
-        </table>
+<head>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/Login.css" />
+</head>
 
-        }
-    </body>
+<body>
+
+    <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
+
+    <h3>Please enter your User Name and Password : </h3><br>
+    <h3>User Name: </h3>
+    <input type="text" size="20"><br>
+    <h3>Password: </h3>
+    <input type="text" size="20">
+    <br>
+    <br>
+    <br>
+    <a asp-controller="Login" asp-action="Index" class="btn btn-lg btn-danger" role="button">Login</a>
+
+</body>
 </html>

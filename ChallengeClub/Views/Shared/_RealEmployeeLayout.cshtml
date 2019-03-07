@@ -1,6 +1,11 @@
 ﻿<!DOCTYPE html>
 
 <head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ChallengeClub</title>
@@ -16,43 +21,53 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<div style="color:white" class="col-md-3">
+<div style="color:white;width:21%" class="col-md-3">
     <div style="background-color:#234066" class="row">
         <h1> Club Challenge</h1>
-
+    </div>
+    <div style="background-color:#0B2A52" class="row">
         <h2> Members</h2>
         <ul>
-            <li><a onclick="redirect('a')" href="#">List fgfdgfdgfsgfdsof Members</a></li>
-            <li><a onclick="redirect('b')" href="#">Add New Members</a></li>
-            <li><a onclick="redirect('c')" href="#">Attendance</a></li>
-            <li><a onclick="redirect('c')" href="#">Edit Member Activity</a></li>
+            <li><a onclick="redirect('a')" href="#">List of Members</a></li>
+            <li><div class="add_member"><a asp-controller="Account" asp-action="Login">Add New Member</a></div></li>
+            <li><div class="attendance"><a asp-controller="Attendance" asp-action="Attendance">Attendance</a></div></li>
+            <li><div class="member_activity_confirm"><a asp-controller="MemberActivityConfirm" asp-action="MemberActivityConfirm">Edit Member Activity</a></div></li>
+
         </ul>
 
         <h2> Calendar</h2>
         <ul>
-            <li><a onclick="redirect('activities')" href="#">Daily Activities</a></li>
+
+            <li><div class="employee_activity_manager"><a asp-controller="EmployeeActivityManager" asp-action="EmployeeActivityManager">Daily Activities</a></div></li>
             <li><a onclick="redirect('e')" href="#">Monthly Events</a></li>
-            <li><a onclick="redirect('f')" href="#">Attendance</a></li>
+            <li><div class="attendance"><a asp-controller="Attendance" asp-action="Attendance">Attendance</a></div></li>
         </ul>
 
         <h2> Reports</h2>
         <ul>
             <li><a onclick="redirect('g')" href="#">Daily Reports</a></li>
-            <li><a onclick="redirect('h')" href="#">Monthly Reports</a></li>
-            <li><a onclick="redirect('i')" href="#">Quarterly Reports</a></li>
+            <li><div class="monthly_report"><a asp-controller="MonthlyReport" asp-action="MonthlyReport">Monthly Report</a></div></li>
+            <li><div class="quarterly_report"><a asp-controller="QuarterlyReport" asp-action="QuarterlyReport">Quarterly Report</a></div></li>
 
         </ul>
         <br />
         <ul>
-            <li><a onclick="redirect('home')" href="#">Home</a></li>
-        </ul>
-    </div>
+            <li><div class="employee_dashboard"><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome">Home</a></div></li>
 
+        </ul>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
 </div>
 
 <body>
+    <div class="col-md-9" style="width:79%">
+        <div style="background-color: deepskyblue; color: white" class="row">
+            <h1>@ViewData["Title"]</h1>
+        </div>
 
+        <div class="container" style="width:10%;float:right"><a asp-controller="Login" asp-action="Index"><h3><b>Logout</b></h3></a></div>
 
+    </div>
 
     <div class="container body-content">
         @RenderBody()
@@ -62,5 +77,5 @@
 
 
     @RenderSection("Scripts", required: false)
-</body>
 
+</body>

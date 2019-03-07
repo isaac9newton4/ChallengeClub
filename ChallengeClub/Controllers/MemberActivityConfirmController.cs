@@ -9,7 +9,7 @@ namespace ChallengeClub.Controllers
 {
     public class MemberActivityConfirmController : Controller
     {
-        public ActionResult Index()
+        public ActionResult MemberActivityConfirm()
         {
             return View();
         }

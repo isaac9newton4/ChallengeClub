@@ -11,7 +11,7 @@ namespace ChallengeClub.Controllers
     public class QuarterlyReportController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult QuarterlyReport()
         {
             return View();
         }

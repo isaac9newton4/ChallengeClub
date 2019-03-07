@@ -11,7 +11,7 @@ namespace ChallengeClub.Controllers
     public class AttendanceController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Attendance()
         {
             return View();
         }

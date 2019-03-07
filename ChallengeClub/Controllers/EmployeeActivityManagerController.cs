@@ -11,8 +11,9 @@ namespace ChallengeClub.Controllers
     public class EmployeeActivityManagerController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
-        {
+        public IActionResult EmployeeActivityManager()
+       
+         { 
             return View();
         }
     }

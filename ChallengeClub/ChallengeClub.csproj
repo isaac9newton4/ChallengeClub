@@ -15,10 +15,12 @@
 
   <ItemGroup>
     <Folder Include="Views\EmployeeLogin\" />
-    <Folder Include="Views\EmployeeDashboardHome\" />
+    <Folder Include="Views\EmployeeActivityManager\" />
+    <Folder Include="Views\QuarterlyReport\" />
+    <Folder Include="Views\MonthlyReport\" />
+    <Folder Include="Views\Attendance\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Views\EmployeeDashboardHome\_ViewStart.cshtml" />
     <Content Remove="Views\EmployeeDashboardHome\_ELayout.cshtml" />
   </ItemGroup>
 </Project>

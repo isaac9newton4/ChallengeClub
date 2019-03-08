@@ -9,7 +9,8 @@ namespace ChallengeClub.Repositories
 {
     public class Member
     {
-        public string MemberId { get; set; }
+        public string Name { get; set; }
+        public string MemberNumber { get; set; }
     }
 
     public class MemberRepository
@@ -31,11 +32,12 @@ namespace ChallengeClub.Repositories
             {
                 const string query = @"
                     SELECT 
-                        m.MemberId
+                        m.Name,
+                        m.MemberNumber
                     FROM Member m
-                    WHERE m.Id = @MemberId";
+                    WHERE m.MemberNumber = @MemberNumber";
 
-                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberId = memberId });
+                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberId });
 
                 return member;
             }

@@ -19,6 +19,12 @@ namespace ChallengeClub
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(b =>
+            {
+                b.SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+            })
                 .UseStartup<Startup>();
     }
 }

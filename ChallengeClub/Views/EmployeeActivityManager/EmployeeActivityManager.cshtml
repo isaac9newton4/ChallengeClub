@@ -6,8 +6,8 @@
     button {
         border-radius: 10px;
         width: 20%;
-        height: 150px;
-        background-color: lightblue;
+        height: 100px;
+
     }
 
         button:after {
@@ -35,16 +35,17 @@
                 margin-bottom: 10px;
             }
         </style>
-        <div id="body"></div><br /><br />
+        <p id="date"></p>
+        <div id="body"></div><br /><br /><hr />
         <h3>Selected Activities</h3>
         <div id="test1"></div>
-        <br />
+        <br /><hr />
 
 
 
 
-        <button type="button" style="height:50px;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Add Activity</button>
-        <button type="button" style="height:50px;" class="btn btn-info btn-lg">Submit</button>
+        <button type="button" style="height:50px; background-color:#7395AE" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Add Activity</button>
+        <button type="button" style="height:50px; background-color:#7395AE" class="btn btn-info btn-lg">Submit</button>
 
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -76,37 +77,79 @@
 </html>
 
 <script>
-    i=0;
+
+
+
 function makeButton(name,hrs) {
-    if(name==""||hrs=="")
-
-    var btn = document.createElement("BUTTON");
+    if(name==""&& hrs=="")
+    {alert("Please enter Name and Hours")}
+    else if(name=="")
+    {alert("Please enter Name")}
+    else if(hrs=="")
+    {alert("Please enter Hours")}
+    else{
+    var i = false
+    var button = document.createElement("BUTTON");
     var space = document.createTextNode(" ");
-    btn.setAttribute("id",name);
-    var text = "Name: "+name+",    Hours: "+hrs;
-    var t = document.createTextNode(text);
-    btn.appendChild(t);
-    document.getElementById("body").appendChild(btn);
+    button.setAttribute("id",name);
+    var text1 = "Name: "+name;
+    var text2 = "Hours: "+hrs;
+    var b = document.createElement("br");
+    var t1 = document.createTextNode(text1);
+    var t2 = document.createTextNode(text2);
+    button.appendChild(t1);
+    button.appendChild(b);
+    button.appendChild(t2);
+    document.getElementById("body").appendChild(button);
     document.getElementById("body").appendChild(space);
-    document.getElementById(name).addEventListener("mousedown",select(name,hrs));
-        
-    }
 
-    function select(name,hrs)
-    {
-    document.getElementById("test1").innerHTML = i++;
+    document.getElementById(name).addEventListener("click",select(name,hrs,i));
 
     }
+    }
+
+    function select(name,hrs,i) {
+        return function(e) {
+        if(i==false){
+    document.getElementById(name).style.borderColor = "yellow";
+    document.getElementById(name).style.borderWidth = "5px";
+    var button1 = document.createElement("BUTTON");
+    var space = document.createTextNode(" ");
+    var nameSelected = name+"_selected";
+    button1.setAttribute("id",nameSelected);
+    var text1 = "Name: "+name;
+    var text2 = "Hours: "+hrs;
+    var b = document.createElement("br");
+    var t1 = document.createTextNode(text1);
+    var t2 = document.createTextNode(text2);
+    button1.appendChild(t1);
+    button1.appendChild(b);
+    button1.appendChild(t2);
+    document.getElementById("test1").appendChild(button1);
+    document.getElementById("test1").appendChild(space);
+    i = true;
+    document.getElementById(nameSelected).addEventListener("click",deselect(name,hrs,i));
+    }
+
+    }
+        }
+
+    function deselect(name,hrs,i) {
+        return function(e) {
+    var nameSelected = name+"_selected";
+    document.getElementById(name).style.borderColor = "black";
+    document.getElementById(name).style.borderWidth = "0px";
+    parent = document.getElementById("test1");
+    parent.removeChild(document.getElementById(nameSelected));
+    i = false;
+    document.getElementById(name).addEventListener("click",select(name,hrs,i));
+
+
+
+        }
+    }
+
+
 </script>
 <br />
 
-var button = document.createElement("BUTTON");
-    var space = document.createTextNode(" ");
-    button.setAttribute("id",name+"_selected");
-    var text = "Name: "+name+",    Hours: "+hrs;
-    var t = document.createTextNode(text);
-    button.appendChild(t);
-    document.button.id = name;
-
-    document.getElementById("test1").appendChild(button);
-    document.getElementById("test1").appendChild(space);

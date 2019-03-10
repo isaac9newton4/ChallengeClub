@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChallengeClub.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace ChallengeClub.Controllers
 {
     [Route("Login")]
     public class LoginController : Controller
     {
+        private readonly IConfiguration configuration;
+        private readonly MemberRepository memberRepository;
+
+        public LoginController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            memberRepository = new MemberRepository(configuration);
+            
+        }
         [HttpGet]
         public IActionResult Index()
         {
@@ -27,6 +38,8 @@ namespace ChallengeClub.Controllers
                 return View();
 
             }
+
+            var member = memberRepository.GetMemberById(memberId);
 
             return View("Views/Icon/Icon.cshtml");
 

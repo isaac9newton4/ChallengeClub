@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ChallengeClub.Models;
 using ChallengeClub.Repositories;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace ChallengeClub.Controllers
 {
@@ -33,32 +34,21 @@ namespace ChallengeClub.Controllers
             return View();
         }
 
-        // POST: Order/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    // TODO: Add insert logic here
-        //    AppContext context = new AppContext();
-        //    MemberActivity model = context.MemberActivities.Add(new MemberActivity()
-        //    {
-        //        Member = collection.Get("Member"),
-        //        Activity = collection.Get("Activity")
-        //    });
-        //    context.SaveChanges();
-        //    return RedirectToAction("About");
-        //}
+        [HttpPost]
+        public ActionResult Create(IFormCollection collection)
+        {
+            this.memberActivityRepository.CreateMemberActivity(
+                collection["Member"],
+                collection["Activity"]
+            );
+            return RedirectToAction("MemberActivityConfirm");
+        }
 
-        // POST: Order/Delete/5
-        //    [HttpPost]
-        //    public ActionResult Delete(int id, FormCollection collection)
-        //    {
-        //        // TODO: Add delete logic here
-        //        AppContext context = new AppContext();
-        //        MemberActivity model = context.MemberActivities.Find(id);
-        //        context.MemberActivities.Remove(model);
-        //        context.SaveChanges();
-        //        return RedirectToAction("Confirm");
-        //    }
-        //}
+        [HttpPost]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            this.memberActivityRepository.DeleteMemberActivity(id);
+            return RedirectToAction("MemberActivityConfirm");
+        }
     }
 }

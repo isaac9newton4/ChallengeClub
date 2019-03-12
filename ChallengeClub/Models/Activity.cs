@@ -7,7 +7,7 @@ namespace ChallengeClub.Models
 {
     public class Activity
     {
-        public string ActivityId { get; set; }
+        public int ActivityId { get; set; }
         public string Name { get; set; }
     }
 }

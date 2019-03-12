@@ -52,14 +52,14 @@ namespace ChallengeClub.Repositories
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    INSERT (@MemberId, @ActivityId)
-                    INTO MemberActivity (MemberId, ActivityId)
+                    INSERT INTO MemberActivity (MemberId, ActivityId)
+                    VALUES (@MemberId, @ActivityId)
                 ";
 
                 connection.Execute(query, new { MemberId = memberId, ActivityId = activityId });
             }
         }
-        public void DeleteMemberActivity(string memberId, string activityId)
+        public void DeleteMemberActivity(int memberActivityId)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
@@ -69,7 +69,7 @@ namespace ChallengeClub.Repositories
                     WHERE MemberActivityId = @id;
                 ";
 
-                connection.Execute(query, new { MemberId = memberId, ActivityId = activityId });
+                connection.Execute(query, new { Id = memberActivityId });
             }
         }
         

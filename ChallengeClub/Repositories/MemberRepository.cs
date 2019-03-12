@@ -9,7 +9,9 @@ namespace ChallengeClub.Repositories
 {
     public class Member
     {
-        public string MemberId { get; set; }
+        public string MemberNumber { get; set; }
+        public string Name { get; set; }
+        public string IconPath { get; set; }
     }
 
     public class MemberRepository
@@ -24,18 +26,20 @@ namespace ChallengeClub.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Member GetMemberById(string memberId)
+        public Member GetMemberById(string memberNumber)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
                     SELECT 
-                        m.MemberId
-                    FROM Member m
-                    WHERE m.Id = @MemberId";
+                        MemberNumber,
+                        Name,
+                        IconPath
+                    FROM dbo.Member
+                    WHERE MemberNumber = @memberNumber";
 
-                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberId = memberId });
+                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberNumber });
 
                 return member;
             }

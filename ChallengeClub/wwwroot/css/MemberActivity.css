@@ -92,3 +92,17 @@ div.desc {
     width: 1200px;
     margin: 0 auto;
 }
+
+.confirm_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th.confirm_table {
+    background-color: blue;
+    color: white;
+}
+
+tr.confirm_table:nth-child(2n+1) {
+    background-color: aliceblue;
+}

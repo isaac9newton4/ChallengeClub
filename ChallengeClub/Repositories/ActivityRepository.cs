@@ -10,6 +10,10 @@ namespace ChallengeClub.Repositories
     public class Activity
     {
         public string ActivityId { get; set; }
+        public string ActivityName { get; set; }
+        public string StartTime { get; set; }
+        public bool IsCheck { get; set; }
+        public string ActivityImage { get; set; }
     }
 
     public class ActivityRepository
@@ -26,16 +30,16 @@ namespace ChallengeClub.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Activity GetActivityById(string activityId)
+        public Activity GetActivityById(int activityId)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
                     SELECT 
-                        m.ActivityId
-                    FROM Member m
-                    WHERE m.Id = @ActivityId";
+                          ActivityId
+                    FROM dbo.Activity
+                    WHERE ActivityId = @activityId";
 
                 var activity = connection.QuerySingleOrDefault<Activity>(query, new { ActivityId = activityId });
 

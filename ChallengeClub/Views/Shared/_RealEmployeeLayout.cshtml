@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        button {
+            background-color: #ADADAD;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ChallengeClub</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<div style="color:#5D5C61;width:21%;height:100%;margin-bottom:0" class="col-md-3">
+    <div style="background-image:linear-gradient(to bottom right, #030B85,#91B4E5 120%);color:whitesmoke" class="row">
+        <h1> Club Challenge</h1>
+    </div>
+    <div style="background-image:linear-gradient(to right,lightblue,whitesmoke 180%)" class="row">
+        <h2> Members</h2>
+        <ul>
+            <li><a onclick="redirect('a')" href="#">List of Members</a></li>
+            <li><div class="add_member"><a asp-controller="Account" asp-action="Login">Add New Member</a></div></li>
+            <li><div class="attendance"><a asp-controller="Attendance" asp-action="Attendance">Attendance</a></div></li>
+            <li><div class="member_activity_confirm"><a asp-controller="MemberActivityConfirm" asp-action="MemberActivityConfirm">Edit Member Activity</a></div></li>
+
+        </ul>
+
+        <h2> Calendar</h2>
+        <ul>
+
+            <li><div class="employee_activity_manager"><a asp-controller="EmployeeActivityManager" asp-action="EmployeeActivityManager">Daily Activities</a></div></li>
+            <li><a onclick="redirect('e')" href="#">Monthly Events</a></li>
+            <li><div class="attendance"><a asp-controller="Attendance" asp-action="Attendance">Attendance</a></div></li>
+        </ul>
+
+        <h2> Reports</h2>
+        <ul>
+            <li><a onclick="redirect('g')" href="#">Daily Reports</a></li>
+            <li><div class="monthly_report"><a asp-controller="MonthlyReport" asp-action="MonthlyReport">Monthly Report</a></div></li>
+            <li><div class="quarterly_report"><a asp-controller="QuarterlyReport" asp-action="QuarterlyReport">Quarterly Report</a></div></li>
+
+        </ul>
+        <br />
+        <ul>
+            <div class="employee_dashboard"><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome"><h3><b>Home</b></h3></a></div>
+            <div><a asp-controller="Login" asp-action="Index"><h3><b>Logout</b></h3></a></div>
+            
+
+        </ul>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+</div>
+
+<body style="background-image:linear-gradient(to left, lightblue, whitesmoke 141%)">
+    <div class="col-md-9" style="width:79%">
+        <div style="background-image:linear-gradient(to bottom left, #030B85,#91B4E5  120%) ; color: white " class="row">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+
+        <h3 id="date" style="text-align:right"></h3>
+
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+
+
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+<script>
+    window.onload = setInterval(clock,1000);
+function clock()
+{
+    var d = new Date();
+    var date = d.getDate();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+    month = monthArr[month];
+    document.getElementById("date").innerHTML=month+" "+date+", "+year;
+}
+
+</script>

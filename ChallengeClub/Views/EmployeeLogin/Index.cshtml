@@ -13,16 +13,14 @@
 <body>
 
     <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
-
-    <h3>Please enter your User Name and Password : </h3><br>
-    <h3>User Name: </h3>
-    <input type="text" size="20"><br>
-    <h3>Password: </h3>
-    <input type="text" size="20">
-    <br>
-    <br>
-    <br>
-    <a asp-controller="Login" asp-action="Index" class="btn btn-lg btn-danger" role="button">Login</a>
-
+    <form>
+        <h3>Please enter your User Name and Password : </h3><br>
+        <h3>User Name: </h3>
+        <input name="employee_username" type="text" size="20"><br>
+        <h3>Password: </h3>
+        <input name="employee_password" type="text" size="20">
+        <br /><br /><br />
+    <button type="submit" asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome" class="btn btn-lg btn-danger" role="button">Login</button>
+    </form>
 </body>
 </html>

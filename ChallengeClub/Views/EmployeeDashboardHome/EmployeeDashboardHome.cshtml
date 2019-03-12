@@ -1,95 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Employee Dashboard";
 }
-<head>
-    <style>
-        h1 {
-            text-align: center;
-        }
-    </style>
-</head>
+
 
 
 <div id="mainContent" class="col-md-9">
 
-    <div style="background-color: deepskyblue; color: white" class="row">
-        <h1>Employee Dashboard</h1>
-    </div>
-
-    <img src="~/images/ClubChallengeLogo.jpg" style="width:850px;height:400px" />
+    <img src="~/images/club_logo.png" style="width:850px;height:400px" />
     <h3>To navigate the dashboard, use the links to the left.</h3>
 </div>
 
-<script>function redirect(link)
-    {
-        var contents = document.getElementById(link).innerHTML;
-        document.getElementById('mainContent').innerHTML= contents;
-    }</script>
 
-<div id="activities" hidden>
-    <div style="background-color:deepskyblue;color:white" class="row">
-        <h1>Daily Activities</h1>
-    </div>
-
-
-
-    <div>
-        <h2>Daily Activities</h2>
-        <h5>Click activities to make them available today</h5>
-        <hr /><br /><br />
-
-        <style>
-            #myDIV {
-                margin-bottom: 10px;
-            }
-        </style>
-
-        <div>
-            <div id="myDIV"></div>
-            <br />
-            <form>
-                <button onclick="myFunction()">+ Add Activity</button>
-                <button onclick="submitAlert()">Submit</button>
-            </form>
-            <script>function myFunction() {
-    var name = prompt("Activity Name:", "");
-    var hours = prompt("Hours:","");
-        if(name == ""||hours == "")
-        {}
-        else
-        {
-    var btn = document.createElement("BUTTON");
-    var space = document.createTextNode("     ");
-    var text = "Name: "+name+"\n\nHours: "+hours;
-    var t = document.createTextNode(text);
-    btn.appendChild(t);
-    document.getElementById("myDIV").appendChild(btn);
-    document.getElementById("myDIV").appendChild(space);
-        }
-}</script>
-            <br />
-        </div>
-
-    </div>
-</div>
-
-<div id="home" hidden>
-    <div style="background-color: deepskyblue; color: white" class="row">
-        <h1>Employee Dashboard</h1>
-    </div>
-
-    <img src="~/images/ClubChallengeLogo.jpg" style="width:650px;height:285px" />
-    <h4>To navigate the dashboard, use the links to the left.</h4>
-</div>
-
-<script>function submitAlert()
-    {
-        decision = confirm("Are you sure you want to submit these activities?");
-            if(decision == true)
-                {
-                    redirect("home");
-                }
-            else
-                {}
-    }</script>
 

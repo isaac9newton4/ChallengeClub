@@ -3,3 +3,5 @@ obj/
 .suo
 .vs/
 v15/
+appsettings.darwin.json
+.idea

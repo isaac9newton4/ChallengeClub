@@ -4,15 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
-    public class Member
-    {
-        public string Name { get; set; }
-        public string MemberNumber { get; set; }
-    }
-
     public class MemberRepository
     {
         public readonly IConfiguration configuration;
@@ -20,26 +15,33 @@ namespace ChallengeClub.Repositories
         {
             this.configuration = configuration;
         }
-        public List<Member> GetMembers()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public Member GetMemberById(string memberId)
+        public IEnumerable<Member> GetMembers()
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT 
-                        m.Name,
-                        m.MemberNumber
+                    SELECT m.*
                     FROM Member m
-                    WHERE m.MemberNumber = @MemberNumber";
+                ";
 
-                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberId });
+                return connection.Query<Member>(query);
+            }
+        }
 
-                return member;
+        public Member GetMemberById(string number)
+        {
+            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
+            {
+                const string query = @"
+                    SELECT m.*
+                    FROM Member m
+                    WHERE m.MemberNumber = @Number
+                ";
+
+                return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
             }
         }
     }

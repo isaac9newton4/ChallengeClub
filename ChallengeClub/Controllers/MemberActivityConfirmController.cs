@@ -14,41 +14,24 @@ namespace ChallengeClub.Controllers
         private readonly IConfiguration configuration;
         private readonly ActivityRepository activityRepository;
         private readonly MemberRepository memberRepository;
+        private readonly MemberActivityRepository memberActivityRepository;
+
 
         public MemberActivityConfirmController(IConfiguration configuration)
         {
             this.configuration = configuration;
             activityRepository = new ActivityRepository(configuration);
             memberRepository = new MemberRepository(configuration);
+            memberActivityRepository = new MemberActivityRepository(configuration);
         }
-        
-      //ViewBag.MemberActivities = new AppContext().MemberActivities.ToArray();
-
         public ActionResult MemberActivityConfirm()
         {
-            return View();
-        }
-
-        public ActionResult Confirm()
-        {
             ViewBag.Message = "Your application description page.";
-            ViewBag.Members = new List<string>()
-            {
-                //memberRepository
-                "John Smith", "Andy Wilhouse","Mary Stewart","Catherine McDonald", "Anduin Wrynn", "Jaina Proudmoore", "Sylvanas Windrunner"
-            };
-            ViewBag.Activities = new List<string>()
-            {
-                
-                "Recreational Activity","Employment Training", "Computer Lab",
-                "Advocacy Training", "Volunteer", "Arts & Crafts", "Gardening", "Reading/Library",
-                "Exercise", "Social Games", "Family & Friends (After Hours)", "Other"
-            };
-            
+            ViewBag.Members = this.memberRepository.GetMembers();
+            ViewBag.Activities = this.activityRepository.GetActivities();
+            ViewBag.MemberActivities = this.memberActivityRepository.GetMemberActivities();
             return View();
         }
-
- 
 
         // POST: Order/Create
         //[HttpPost]

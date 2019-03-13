@@ -34,22 +34,13 @@ namespace ChallengeClub.Repositories
             {
                 const string query = @"
                     SELECT 
-<<<<<<< HEAD
                         MemberNumber,
                         Name,
                         IconPath
                     FROM dbo.Member
                     WHERE MemberNumber = @memberNumber";
 
-                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberNumber});
-=======
-                        m.MemberNumber,
-                        m.Name
-                    FROM dbo.Member m
-                    WHERE m.MemberNumber = @MemberNumber";
-
-                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberId });
->>>>>>> 3b54639247ddc161625153995426b83f33240982
+                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberNumber });
 
                 return member;
             }

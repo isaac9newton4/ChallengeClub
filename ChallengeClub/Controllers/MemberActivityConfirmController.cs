@@ -4,67 +4,51 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ChallengeClub.Models;
+using ChallengeClub.Repositories;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace ChallengeClub.Controllers
 {
     public class MemberActivityConfirmController : Controller
     {
+        private readonly IConfiguration configuration;
+        private readonly ActivityRepository activityRepository;
+        private readonly MemberRepository memberRepository;
+        private readonly MemberActivityRepository memberActivityRepository;
+
+
+        public MemberActivityConfirmController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            activityRepository = new ActivityRepository(configuration);
+            memberRepository = new MemberRepository(configuration);
+            memberActivityRepository = new MemberActivityRepository(configuration);
+        }
         public ActionResult MemberActivityConfirm()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
             ViewBag.Message = "Your application description page.";
-            ViewBag.Members = new List<string>()
-            {
-                "John Smith", "Andy Wilhouse","Mary Stewart","Catherine McDonald", "Anduin Wrynn", "Jaina Proudmoore", "Sylvanas Windrunner"
-            };
-            ViewBag.Activities = new List<string>()
-            {
-                "Recreational Activity","Employment Training", "Computer Lab",
-                "Advocacy Training", "Volunteer", "Arts & Crafts", "Gardening", "Reading/Library",
-                "Exercise", "Social Games", "Family & Friends (After Hours)", "Other"
-            };
-            // ViewBag.MemberActivities = new AppContext().MemberActivities.ToArray();
-
+            ViewBag.Members = this.memberRepository.GetMembers();
+            ViewBag.Activities = this.activityRepository.GetActivities();
+            ViewBag.MemberActivities = this.memberActivityRepository.GetMemberActivities();
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Create(IFormCollection collection)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            this.memberActivityRepository.CreateMemberActivity(
+                collection["Member"],
+                collection["Activity"]
+            );
+            return RedirectToAction("MemberActivityConfirm");
         }
 
-        // POST: Order/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    // TODO: Add insert logic here
-        //    AppContext context = new AppContext();
-        //    MemberActivity model = context.MemberActivities.Add(new MemberActivity()
-        //    {
-        //        Member = collection.Get("Member"),
-        //        Activity = collection.Get("Activity")
-        //    });
-        //    context.SaveChanges();
-        //    return RedirectToAction("About");
-        //}
-
-        // POST: Order/Delete/5
-        //    [HttpPost]
-        //    public ActionResult Delete(int id, FormCollection collection)
-        //    {
-        //        // TODO: Add delete logic here
-        //        AppContext context = new AppContext();
-        //        MemberActivity model = context.MemberActivities.Find(id);
-        //        context.MemberActivities.Remove(model);
-        //        context.SaveChanges();
-        //        return RedirectToAction("About");
-        //    }
-        //}
+        [HttpPost]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            this.memberActivityRepository.DeleteMemberActivity(id);
+            return RedirectToAction("MemberActivityConfirm");
+        }
     }
 }

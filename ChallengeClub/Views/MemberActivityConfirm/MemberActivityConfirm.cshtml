@@ -7,71 +7,77 @@
 @{
     ViewBag.Title = "Activities";
 }
+<html>
+<body>
 
-<h1>Verify the activities for each member for today</h1>
-<br />
-<br />
+    <h1>Verify the activities for each member for today</h1>
+    <br />
+    <br />
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            @foreach (var item in ViewBag.Activities)
-            {
-                <th>@item</th>
-            }
-        </tr>
-    </thead>
-     
-    @*<tbody>
-        @foreach (var item in ViewBag.Members)
-        {
-            <tr>
-                <td>@item</td>
-                @foreach (var checkbox in ViewBag.Activities)
-                {
-                    <td>
-                        @{
-                            var ma = ((IEnumerable<MemberActivity>)ViewBag.MemberActivities).FirstOrDefault(m => m.Member == item && m.Activity == checkbox);
-                            if (ma == null)
-                            {
-                                <form method="post" action="/home/create">
-                                    <input type="hidden" value="@item" name="Member" />
-                                    <input type="hidden" value="@checkbox" name="Activity" />
-                                    <button type="submit">
-                                        &#10061;
-                                    </button>
-                                </form>
-                            }
-                            else
-                            {
-                                <form method="post" action="/home/delete/@ma.Id">
-                                    <button type="submit">
-                                        &#10004;
-                                    </button>
-                                </form>
-                            }
-                        }
-                    </td>
-                }
-            </tr>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
         }
-    </tbody>*@
-</table>
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    
+    <table style="width: 100%;" >
+                <thead>
+                    <tr>
+                        <th></th>
+                        @foreach (var item in ViewBag.Activities)
+                        {
+                            <th>@item.Name</th>
+                        }
+                    </tr>
+                </thead>
+    <tbody>
+                @foreach (var item in ViewBag.Members)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        @foreach (var checkbox in ViewBag.Activities)
+                        {
+                            <td>
+                                @{
+                                    var ma = ((IEnumerable<MemberActivity>)ViewBag.MemberActivities).FirstOrDefault(
+                                        m => m.MemberId == item.MemberId && m.ActivityId == checkbox.ActivityId
+                                    );
+                                    if (ma == null)
+                                    {
+                                        <form method="post" action="/memberactivityconfirm/create">
+                                            <input type="hidden" value="@item.MemberId" name="Member" />
+                                            <input type="hidden" value="@checkbox.ActivityId" name="Activity" />
+                                            <button type="submit">
+                                                &#10061;
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form method="post" action="/memberactivityconfirm/delete/@ma.MemberActivityId">
+                                            <button type="submit">
+                                                &#10004;
+                                            </button>
+                                        </form>
+                                    }
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+</body>
+</html>

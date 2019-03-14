@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ChallengeClub.Models
 {
-    public class Activity
+    public class OurDbContext
     {
-        public int ActivityId { get; set; }
-        public string Name { get; set; }
+      
     }
 }

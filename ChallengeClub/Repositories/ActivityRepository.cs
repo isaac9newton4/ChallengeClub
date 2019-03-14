@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
@@ -26,34 +25,25 @@ namespace ChallengeClub.Repositories
             this.configuration = configuration;
         }
 
-        public IEnumerable<Activity> GetActivities()
+        public List<Activity> GetActivity()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
-            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
-            {
-                const string query = @"
-                    SELECT a.*
-                    FROM Activity a
-                ";
-
-                return connection.Query<Activity>(query);
-            }
+            throw new System.NotImplementedException();
         }
 
-
-        public Activity GetActivityById(string id)
+        public Activity GetActivityById(int activityId)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
+                    SELECT 
+                          ActivityId
+                    FROM dbo.Activity
+                    WHERE ActivityId = @activityId";
 
-                    SELECT a.*
-                    FROM Activity a
-                    WHERE a.ActivityId = @Id
-                ";
+                var activity = connection.QuerySingleOrDefault<Activity>(query, new { ActivityId = activityId });
 
-                return connection.QuerySingleOrDefault<Activity>(query, new { Id = id });
+                return activity;
             }
         }
     }

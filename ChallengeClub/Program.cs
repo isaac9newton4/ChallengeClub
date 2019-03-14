@@ -23,7 +23,6 @@ namespace ChallengeClub
             .ConfigureAppConfiguration(b =>
             {
                 b.SetBasePath(Directory.GetCurrentDirectory())
-
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
 
                 .AddJsonFile("appsettings.darwin.json", optional: true, reloadOnChange: false)

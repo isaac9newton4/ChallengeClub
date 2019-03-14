@@ -6,8 +6,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChallengeClub.Models;
 
+
 namespace ChallengeClub.Repositories
 {
+    public class Member
+    {
+        public string MemberNumber { get; set; }
+        public string Name { get; set; }
+        public string IconPath { get; set; }
+    }
+
     public class MemberRepository
     {
         public readonly IConfiguration configuration;
@@ -31,8 +39,9 @@ namespace ChallengeClub.Repositories
         }
 
         public Member GetMemberById(string number)
+
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -40,6 +49,7 @@ namespace ChallengeClub.Repositories
                     FROM Member m
                     WHERE m.MemberNumber = @Number
                 ";
+
 
                 return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
             }

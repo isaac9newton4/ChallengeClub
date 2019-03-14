@@ -36,7 +36,6 @@
                             @Html.HiddenFor(m => Model.DailyActs[i].ActivityId)
                             @Html.HiddenFor(m => Model.DailyActs[i].ActivityName)
                             @Html.HiddenFor(m => Model.DailyActs[i].StartTime)
-                            @Html.HiddenFor(m => Model.DailyActs[i].IsCheck)
                         </div>
                     </div>
                 }
@@ -58,17 +57,17 @@
                 @using (Html.BeginForm("MemberActivity", "MemberActivity"))
                 {
 
-                <tr>
+                <tr class="table-success">
                     <th>Time</th>
                     <th>Activity</th>
-                    <th>Option</th>
+                   
                 </tr>
                     for (int i = 0; i < Model.SelectedActs.Count; i++)
                     {
                         <tr>
                             <td>@Model.SelectedActs[i].StartTime</td>
                             <td>@Model.SelectedActs[i].ActivityName</td>
-                            <td>@Html.ActionLink("Delete", "Delete", new { id = @Model.SelectedActs[i].ActivityId, list = Model.SelectedActs })</td>
+                            
                         </tr>
                     }
 

@@ -8,6 +8,15 @@ using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
+    public class Activity
+    {
+        public string ActivityId { get; set; }
+        public string ActivityName { get; set; }
+        public string StartTime { get; set; }
+        public bool IsCheck { get; set; }
+        public string ActivityImage { get; set; }
+    }
+
     public class ActivityRepository
     {
         public readonly IConfiguration configuration;
@@ -31,12 +40,14 @@ namespace ChallengeClub.Repositories
             }
         }
 
+
         public Activity GetActivityById(string id)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
+
                     SELECT a.*
                     FROM Activity a
                     WHERE a.ActivityId = @Id

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ChallengeClub.Models;
 
 
 namespace ChallengeClub.Repositories
@@ -23,35 +22,27 @@ namespace ChallengeClub.Repositories
         {
             this.configuration = configuration;
         }
-
-        public IEnumerable<Member> GetMembers()
+        public List<Member> GetMembers()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
-            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
-            {
-                const string query = @"
-                    SELECT m.*
-                    FROM Member m
-                ";
-
-                return connection.Query<Member>(query);
-            }
+            throw new System.NotImplementedException();
         }
 
-        public Member GetMemberById(string number)
-
+        public Member GetMemberById(string memberNumber)
         {
             var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT m.*
-                    FROM Member m
-                    WHERE m.MemberNumber = @Number
-                ";
+                    SELECT 
+                        MemberNumber,
+                        Name,
+                        IconPath
+                    FROM dbo.Member
+                    WHERE MemberNumber = @memberNumber";
 
+                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberNumber });
 
-                return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
+                return member;
             }
         }
     }

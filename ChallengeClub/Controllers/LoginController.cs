@@ -12,16 +12,13 @@ namespace ChallengeClub.Controllers
     [Route("Login")]
     public class LoginController : Controller
     {
-
         public readonly IConfiguration configuration;
         public readonly MemberRepository memberRepository;
-
         public LoginController(IConfiguration configuration)
         {
             this.configuration = configuration;
             memberRepository = new MemberRepository(configuration);
         }
-
 
         [HttpGet("{memberId}")]
         public IActionResult GetMemberById(string memberId)

@@ -5,7 +5,7 @@
 <br />
 
 @{
-    ViewBag.Title = "Confirm Member Activities";
+    ViewBag.Title = "Activities";
 }
 <html>
 <body>
@@ -18,7 +18,7 @@
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 100%;
+            width: 10%;
         }
 
         td, th {
@@ -31,13 +31,14 @@
             background-color: #dddddd;
         }
     </style>
+
     <table>
         <thead>
             <tr>
                 <th></th>
-                @foreach (var item in ViewBag.Activities)  
+                @foreach (var item in ViewBag.Activities)
                 {
-                    <th>@item</th>
+                    <th>@item.Name</th>
                 }
             </tr>
         </thead>
@@ -45,17 +46,19 @@
             @foreach (var item in ViewBag.Members)
             {
                 <tr>
-                    <td>@item</td>
+                    <td>@item.Name</td>
                     @foreach (var checkbox in ViewBag.Activities)
                     {
                         <td>
                             @{
-                                var ma = ((IEnumerable<MemberActivityConfirm>)ViewBag.MemberActivityConfirm).FirstOrDefault(m => m.Member == item && m.Activity == checkbox);
+                                var ma = ((IEnumerable<MemberActivity>)ViewBag.MemberActivities).FirstOrDefault(
+                                    m => m.MemberId == item.MemberId && m.ActivityId == checkbox.ActivityId
+                                );
                                 if (ma == null)
                                 {
-                                    <form method="post" action="/home/create">
-                                        <input type="hidden" value="@item" name="member" />
-                                        <input type="hidden" value="@checkbox" name="activity" />
+                                    <form method="post" action="/memberactivityconfirm/create">
+                                        <input type="hidden" value="@item.MemberId" name="Member" />
+                                        <input type="hidden" value="@checkbox.ActivityId" name="Activity" />
                                         <button type="submit">
                                             &#10061;
                                         </button>
@@ -63,7 +66,7 @@
                                 }
                                 else
                                 {
-                                    <form method="post" action="/home/delete/@ma.Id">
+                                    <form method="post" action="/memberactivityconfirm/delete/@ma.MemberActivityId">
                                         <button type="submit">
                                             &#10004;
                                         </button>

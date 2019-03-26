@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChallengeClub.Controllers
 {
-    public class EmployeeDashboardHomeController : Controller
+    public class EmployeeActivityManagerController : Controller
     {
         // GET: /<controller>/
-        [Route("Employee")]
-        public IActionResult EmployeeDashboardHome()
-        {
+        public IActionResult EmployeeActivityManager()
+       
+         { 
             return View();
         }
     }

@@ -4,14 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
-    public class Activity
-    {
-        public string ActivityId { get; set; }
-    }
-
     public class ActivityRepository
     {
         public readonly IConfiguration configuration;
@@ -21,25 +17,32 @@ namespace ChallengeClub.Repositories
             this.configuration = configuration;
         }
 
-        public List<Activity> GetActivity()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Activity GetActivityById(string activityId)
+        public IEnumerable<Activity> GetActivities()
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT 
-                        m.ActivityId
-                    FROM Member m
-                    WHERE m.Id = @ActivityId";
+                    SELECT a.*
+                    FROM Activity a
+                ";
 
-                var activity = connection.QuerySingleOrDefault<Activity>(query, new { ActivityId = activityId });
+                return connection.Query<Activity>(query);
+            }
+        }
 
-                return activity;
+        public Activity GetActivityById(string id)
+        {
+            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
+            {
+                const string query = @"
+                    SELECT a.*
+                    FROM Activity a
+                    WHERE a.ActivityId = @Id
+                ";
+
+                return connection.QuerySingleOrDefault<Activity>(query, new { Id = id });
             }
         }
     }

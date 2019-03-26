@@ -75,18 +75,7 @@ namespace ChallengeClub.Controllers
         [HttpPost]
         public IActionResult MemberActivity(ActivityList ls)
         {
-            /*StringBuilder sb = new StringBuilder();
-            foreach (var thing in SelectedActivity.DailyActs)
-            {
-                if (thing.IsCheck)
-                {
-                    sb.Append(thing.ActivityName + " at " + thing.StartTime + ",");
-                
-                }
-            }
-            ViewBag.SelectedAct = "Your Activities are " + sb.ToString();*/
-
-
+            
             List<MemberActivity> TableList = new List<MemberActivity>();
 
              foreach (var item in ls.DailyActs) {
@@ -101,5 +90,7 @@ namespace ChallengeClub.Controllers
 
             return View(ConfirmList);
         }
+
+        
     }
 }

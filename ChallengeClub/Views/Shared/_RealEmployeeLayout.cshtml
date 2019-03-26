@@ -5,6 +5,9 @@
         h1 {
             text-align: center;
         }
+        button {
+            background-color: #ADADAD;
+        }
     </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,11 +24,11 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<div style="color:white;width:21%" class="col-md-3">
-    <div style="background-color:#234066" class="row">
+<div style="color:#5D5C61;width:21%;height:100%;margin-bottom:0" class="col-md-3">
+    <div style="background-image:linear-gradient(to bottom right, #030B85,#91B4E5 120%);color:whitesmoke" class="row">
         <h1> Club Challenge</h1>
     </div>
-    <div style="background-color:#0B2A52" class="row">
+    <div style="background-image:linear-gradient(to right,lightblue,whitesmoke 180%)" class="row">
         <h2> Members</h2>
         <ul>
             <li><a onclick="redirect('a')" href="#">List of Members</a></li>
@@ -52,20 +55,22 @@
         </ul>
         <br />
         <ul>
-            <li><div class="employee_dashboard"><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome">Home</a></div></li>
+            <div class="employee_dashboard"><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome"><h3><b>Home</b></h3></a></div>
+            <div><a asp-controller="Login" asp-action="Index"><h3><b>Logout</b></h3></a></div>
+            
 
         </ul>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
 </div>
 
-<body>
+<body style="background-image:linear-gradient(to left, lightblue, whitesmoke 141%)">
     <div class="col-md-9" style="width:79%">
-        <div style="background-color: deepskyblue; color: white" class="row">
+        <div style="background-image:linear-gradient(to bottom left, #030B85,#91B4E5  120%) ; color: white " class="row">
             <h1>@ViewData["Title"]</h1>
         </div>
 
-        <div class="container" style="width:10%;float:right"><a asp-controller="Login" asp-action="Index"><h3><b>Logout</b></h3></a></div>
+        <h3 id="date" style="text-align:right"></h3>
 
     </div>
 
@@ -76,6 +81,21 @@
 
 
 
+
     @RenderSection("Scripts", required: false)
 
 </body>
+<script>
+    window.onload = setInterval(clock,1000);
+function clock()
+{
+    var d = new Date();
+    var date = d.getDate();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+    month = monthArr[month];
+    document.getElementById("date").innerHTML=month+" "+date+", "+year;
+}
+
+</script>

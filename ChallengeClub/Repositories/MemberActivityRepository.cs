@@ -1,4 +1,4 @@
-using Dapper;
+﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -72,6 +72,6 @@ namespace ChallengeClub.Repositories
                 connection.Execute(query, new { Id = memberActivityId });
             }
         }
-        
+
     }
 }

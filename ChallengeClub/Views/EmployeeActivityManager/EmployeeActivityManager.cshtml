@@ -7,10 +7,7 @@
         border-radius: 10px;
         width: 20%;
         height: 100px;
-
     }
-
-
 </style>
 <html lang="en">
 <head>
@@ -45,7 +42,7 @@
 
 
         <button type="button" style="height:50px; background-color:#030B85" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+ Add Activity</button>
-        <button type="button" style="height:50px; background-color:#030B85" class="btn btn-info btn-lg" data-toggle="modal" onclick="submitSelected()" data-target="#confirmActivities" >Submit</button>
+        <button type="button" style="height:50px; background-color:#030B85" class="btn btn-info btn-lg" data-toggle="modal" onclick="submitSelected()" data-target="#confirmActivities">Submit</button>
 
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -62,7 +59,7 @@
                             <h3>Hours: </h3>
                             <input type="text" name="activityHours" required /><br />
                             <h3>Description: </h3>
-                            <textarea name="activityDescription" style="width:400px;height:200px" ></textarea><br /><br />
+                            <textarea name="activityDescription" style="width:400px;height:200px"></textarea><br /><br />
 
                         </div>
                         <div class="modal-footer">
@@ -82,9 +79,9 @@
                     </div>
                     <form>
                         <div class="modal-body" id="confirmBody">
-                               <h3 id="yesMsg1"></h3>
-                               <div id="activitiesArea"></div>
-                               <h3 id="yesMsg2"></h3>
+                            <h3 id="yesMsg1"></h3>
+                            <div id="activitiesArea"></div>
+                            <h3 id="yesMsg2"></h3>
                         </div>
                         <div class="modal-footer">
                             <button id="confirmButton1" type="button" style="width:10%;height:50px;" class="btn btn-default" data-dismiss="modal" onclick="location.href='@Url.Action("EmployeeDashboardHome", "EmployeeDashboardHome")'"></button>

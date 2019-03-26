@@ -25,5 +25,6 @@
     <Content Remove="appsettings.darwin.json" />
     <Content Remove="wwwroot\images\background1.jpg" />
     <Content Remove="wwwroot\images\bg1.jpg" />
+    <Content Remove="Views\Shared\_EmployeeLayout.cshtml" />
   </ItemGroup>
 </Project>

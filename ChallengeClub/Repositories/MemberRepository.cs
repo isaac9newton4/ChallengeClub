@@ -4,17 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
-    public class Member
-    {
-        public string MemberNumber { get; set; }
-        public string Name { get; set; }
-        public string IconPath { get; set; }
-    }
-
     public class MemberRepository
     {
         public readonly IConfiguration configuration;
@@ -22,27 +15,33 @@ namespace ChallengeClub.Repositories
         {
             this.configuration = configuration;
         }
-        public List<Member> GetMembers()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public Member GetMemberById(string memberNumber)
+        public IEnumerable<Member> GetMembers()
         {
-            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
+            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT 
-                        MemberNumber,
-                        Name,
-                        IconPath
-                    FROM dbo.Member
-                    WHERE MemberNumber = @memberNumber";
+                    SELECT m.*
+                    FROM Member m
+                ";
 
-                var member = connection.QuerySingleOrDefault<Member>(query, new { MemberNumber = memberNumber });
+                return connection.Query<Member>(query);
+            }
+        }
 
-                return member;
+        public Member GetMemberById(string number)
+        {
+            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
+            {
+                const string query = @"
+                    SELECT m.*
+                    FROM Member m
+                    WHERE m.MemberNumber = @Number
+                ";
+
+                return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
             }
         }
     }

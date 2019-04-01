@@ -39,7 +39,7 @@ namespace ChallengeClub.Controllers
             var isNumber = int.TryParse(memberId, out _);
             if (string.IsNullOrWhiteSpace(memberId) || memberId.Length != 4 || !isNumber)
             {
-                ViewBag.Error = "The number is Invalid.  Please Try Again.";
+                ViewBag.Error = "The number must be 4-digits without space.  Please Try Again.";
                 return View();
 
             }
@@ -47,11 +47,11 @@ namespace ChallengeClub.Controllers
             var member = memberRepository.GetMemberById(memberId);
             if (member == null)
             {
-                ViewBag.Error = "The number is Invalid.  Please Try Again.";
+                ViewBag.Error = "The number is not exist.  Please Try Again.";
                 return View();
             }
 
-            return View("Views/Icon/Icon.cshtml");
+            return View("Views/Icon/Icon.cshtml",member);
         }
     }
 }

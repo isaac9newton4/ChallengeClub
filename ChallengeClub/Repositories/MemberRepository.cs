@@ -40,7 +40,7 @@ namespace ChallengeClub.Repositories
                     FROM Member m
                     WHERE m.MemberNumber = @Number
                 ";
-
+      
                 return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
             }
         }

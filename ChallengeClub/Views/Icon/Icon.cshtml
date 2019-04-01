@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ChallengeClub.Models.Member;
+
+@{
     ViewData["Title"] = "Icon";
     Layout = null;
 }
@@ -12,7 +14,7 @@
 <body>
     <div class="bg-primary"><h1>Is that you ? </h1></div>
 
-    <div class="icon"><img src="~/images/icon-mario.jpg" height="200" width="200"></div>
+    <div class="icon"><img src="@Model.IconPath" height="200" width="200"></div>
 
     <div class="btn-login"><a asp-controller="Welcome" asp-action="Welcome" class="btn btn-lg btn-success" role="button">Yes, log in.</a></div>
 

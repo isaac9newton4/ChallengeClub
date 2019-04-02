@@ -5,6 +5,7 @@
         h1 {
             text-align: center;
         }
+
         button {
             background-color: #ADADAD;
         }
@@ -28,44 +29,10 @@
     <div style="background-image:linear-gradient(to bottom right, #030B85,#91B4E5 120%);color:whitesmoke;font-size:3vw;height:69px;line-height:69px" class="row">
         <p> Club Challenge</p>
     </div>
-    <div style="background-image:linear-gradient(to right,lightblue,whitesmoke 180%)" class="row">
-        <h2> Members</h2>
-        <ul>
-
-            <li><div class="add_member"><a asp-controller="Account" asp-action="Login">Add New Member</a></div></li>
-            <li><div class="attendance"><a asp-controller="Attendance" asp-action="Attendance">Attendance</a></div></li>
-            <li><div class="member_activity_confirm"><a asp-controller="MemberActivityConfirm" asp-action="MemberActivityConfirm">Edit Member Activity</a></div></li>
-
-        </ul>
-
-        <h2> Calendar</h2>
-        <ul>
-
-            <li><div class="employee_activity_manager"><a asp-controller="EmployeeActivityManager" asp-action="EmployeeActivityManager">Daily Activities</a></div></li>
-            <li><div class="attendance"><a asp-controller="Attendance" asp-action="Attendance">Attendance</a></div></li>
-            <li><div class="monthly_events"><a asp-controller="MonthlyEvents" asp-action="MonthlyEvents">Monthly Events</a></div></li>
-
-        </ul>
-        <h2> Reports</h2>
-        <ul>
-
-            <li><div class="daily_report"><a asp-controller="DailyReport" asp-action="DailyReport">Daily Report</a></div></li>
-            <li><div class="monthly_report"><a asp-controller="MonthlyReport" asp-action="MonthlyReport">Monthly Report</a></div></li>
-            <li><div class="quarterly_report"><a asp-controller="QuarterlyReport" asp-action="QuarterlyReport">Quarterly Report</a></div></li>
-
-        </ul>
-        <br />
-        <ul>
-            <div class="employee_dashboard"><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome"><h3><b>Home</b></h3></a></div>
-            <div><a asp-controller="Login" asp-action="Index"><h3><b>Logout</b></h3></a></div>
-
-
-        </ul>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    </div>
+    <div class="col-md" style="float:left"><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome"><h3><b>Home</b></h3></a></div>
 </div>
 
-<body style="background-image:linear-gradient(to left, lightblue, whitesmoke 141%)">
+<body style="background-image:linear-gradient(to left, lightblue 10%, #D6ECF1 80%, lightblue)">
     <div class="col-md-9" style="width:79%">
         <div style="background-image:linear-gradient(to bottom left, #030B85,#91B4E5  120%) ; color: white ; line-height:69px;text-align:center;height:69px;font-size:3vw" class="row">
             <p>@ViewData["Title"]</p>
@@ -87,7 +54,7 @@
 
 </body>
 <script>
-    window.onload = setInterval(clock,1000);
+window.onload = setInterval(clock,1000);
 function clock()
 {
     var d = new Date();
@@ -97,6 +64,4 @@ function clock()
     var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
     month = monthArr[month];
     document.getElementById("date").innerHTML=month+" "+date+", "+year;
-}
-
-</script>
+}</script>

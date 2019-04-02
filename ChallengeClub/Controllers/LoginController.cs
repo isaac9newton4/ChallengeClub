@@ -20,13 +20,6 @@ namespace ChallengeClub.Controllers
             memberRepository = new MemberRepository(configuration);
         }
 
-        [HttpGet("{memberId}")]
-        public IActionResult GetMemberById(string memberId)
-        {
-            var number = memberRepository.GetMemberById(memberId);
-            return Ok(number);
-        }
-
         [HttpGet]
         public IActionResult Index()
         {

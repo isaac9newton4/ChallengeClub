@@ -5,12 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ChallengeClub.Models;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using ChallengeClub.Repositories;
 
 namespace ChallengeClub.Controllers
 {
     [Route("MemberActivity")]
     public class MemberActivityController : Controller
     {
+        public readonly IConfiguration configuration;
+        public readonly ActivityRepository activityRepository;
+        public MemberActivityController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            activityRepository = new ActivityRepository(configuration);
+        }
+
         [HttpGet]
         public IActionResult MemberActivity()
         {
@@ -60,6 +70,8 @@ namespace ChallengeClub.Controllers
                 ActivityImage = "/images/dance.jpg",
                 IsCheck = false
             });
+
+            //IEnumerable<Activity> activity = activityRepository.GetActivities();
 
             ActivityList ShowList = new ActivityList();
 

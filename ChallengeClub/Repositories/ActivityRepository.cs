@@ -45,5 +45,7 @@ namespace ChallengeClub.Repositories
                 return connection.QuerySingleOrDefault<Activity>(query, new { Id = id });
             }
         }
+
+        
     }
 }

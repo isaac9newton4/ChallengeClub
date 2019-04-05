@@ -17,7 +17,7 @@
 
     <div class="icon"><img src="@Model.IconPath" height="200" width="200"></div>
 
-    <div class="btn-login"><a asp-controller="Welcome" asp-action="Welcome" class="btn btn-lg btn-success" role="button">Yes, log in.</a></div>
+    <div class="btn-login"><a href="/Welcome/@Model.MemberNumber" class="btn btn-lg btn-success" role="button" >Yes, log in.</a></div>
 
     <div class="btn-notme"><a asp-controller="Login" asp-action="Index" class="btn btn-lg btn-danger" role="button">No, it is not me.</a></div>
 

@@ -1,26 +1,35 @@
-﻿@model ChallengeClub.Models.Account;
+﻿@model ChallengeClub.Models.Employee;
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Employee Log in";
     Layout = null;
 }
 <html>
 <head>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/Login.css" />
+    <link rel="stylesheet" href="~/css/EmployeeLogin.css" />
 </head>
 
 <body>
+        <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
+            <div class="container">
+                <form class="login-form validate-form" method="post">
+                    <span class="login-form-title">
+                        Login
+                    </span>
+                    <span class="error_message">@ViewBag.Error</span>
+                    <div class="wrap-input">
+                        <span class="label-input">Username</span>
+                        <input class="input" type="text" name="username" placeholder="Type your username" required>
+                    </div>
 
-    <div><img src="~/images/club_logo.png" style="width:30%" alt="challenge club logo"></div>
-    <form>
-        <h3>Please enter your User Name and Password : </h3><br>
-        <h3>User Name: </h3>
-        <input name="employee_username" type="text" size="20"><br>
-        <h3>Password: </h3>
-        <input name="employee_password" type="text" size="20">
-        <br /><br /><br />
-    <button type="submit" asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome" class="btn btn-lg btn-danger" role="button">Login</button>
-    </form>
+                    <div class="wrap-input">
+                        <span class="label-input">Password</span>
+                        <input class="input" type="password" name="password" placeholder="Type your password" required>
+                    </div>
+
+                    <input class="gradient-button gradient-button-3" type="submit" value="Login">
+                </form>
+            </div>
 </body>
 </html>

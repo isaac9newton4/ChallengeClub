@@ -8,6 +8,6 @@ namespace ChallengeClub.Models
 {
     public class EmployeeLoginView
     {
-        public EmployeeAccount EmployeeAccount { get; set; }
+        public Employee EmployeeAccount { get; set; }
     }
 }

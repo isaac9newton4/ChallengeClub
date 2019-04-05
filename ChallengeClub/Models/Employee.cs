@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeClub.Models
 {
-    public class EmployeeAccount
+    public class Employee
     {
         [Required]
         [Display(Name = "Username")]
@@ -14,6 +14,6 @@ namespace ChallengeClub.Models
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }
-        public string[] Roles {get; set; }
+        public string Roles {get; set; }
     }
 }

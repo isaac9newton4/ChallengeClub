@@ -12,8 +12,10 @@ namespace ChallengeClub.Controllers
     public class WelcomeController : Controller
     {
         [Route("Welcome")]
+       
         public IActionResult Welcome()
         {
+
             return View();
         }
     }

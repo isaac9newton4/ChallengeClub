@@ -1,5 +1,103 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ChallengeClub.Models.MonthlyEvents;
+
+
 @{
+    ViewData["Title"] = "Monthly Events";
 }
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<div id="monthlyEvents" class="col-md-9">
+    <br />
+    <button type="button" style="height:50px; background-color:#030B85;float:right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#eventModal">+ Add Event</button>
+
+    <div class="modal fade" id="eventModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h2 class="modal-title">Add Event</h2>
+                </div>
+                <form method="post" onsubmit="setTimeout(function(){window.location.reload();},10)">
+                    <div class="modal-body">
+
+
+                        <h3>Title: </h3>
+                        <input type="text" name="eventTitle" required /><br />
+                        <h3>Date: </h3>
+                        <input name="eventDate" type="date" />
+                        <h3>Description: </h3>
+                        <textarea name="eventDescription" style="width:400px;height:200px"></textarea><br /><br />
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" style="width:10%;height:50px;" class="btn btn-default" name="eventSubmit"></input>
+                        <button type="button" style="width:10%;height:50px;" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <p id="eventsByDate">
+
+    </p>
+
+
+</div>
+</html>
+
+<script>
+    var monthArr = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+    i=0;
+    function Display(date, title){
+        var heading = document.createElement("h3");
+        heading.setAttribute("id","eventDatePlace"+i);
+        document.getElementById("eventsByDate").appendChild(heading);
+
+        var heading2 = document.createElement("ul");
+        heading2.setAttribute("id","eventTitlePlace"+i);
+        document.getElementById("eventsByDate").appendChild(heading2);
+
+        d = new Date(date);
+        var day = d.getDate();
+        var month = d.getMonth();
+        month = monthArr[month];
+        month1 = month+" ";
+        document.getElementById("eventDatePlace"+i).innerHTML = month1+day;
+        document.getElementById("eventTitlePlace"+i).innerHTML = title;
+    i++
+            }
+</script>
+
+@foreach (var item in ViewBag.Events)
+{
+    <script>Display("@item.Date","@item.Title")</script>
+}
+
+
+
+
+ <!--while(x<32)
+            {
+        var b = document.createElement("br");
+        var b2 = document.createElement("br");
+    month1 = document.createTextNode(month+" ");
+        var events = document.createElement("h2");
+                num = document.createTextNode(x);
+        events.appendChild(month1);
+       events.appendChild(num);
+        events.appendChild(b);
+     events.appendChild(b2);
+    document.getElementById("eventsByDate").appendChild(events);
+
+
+    x++;
+    }-->

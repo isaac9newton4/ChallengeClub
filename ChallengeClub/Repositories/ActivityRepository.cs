@@ -45,5 +45,21 @@ namespace ChallengeClub.Repositories
                 return connection.QuerySingleOrDefault<Activity>(query, new { Id = id });
             }
         }
+
+
+        public void AddActivity(string name, int hours, string description)
+        {
+            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
+            {
+                const string query = @"
+                    INSERT INTO Activity(Name,Hours,Description)
+                    VALUES(@Name,@Hours,@Description)
+                ";
+
+                connection.Execute(query, new { Name = name, Hours = hours, Description = description });
+            }
+        }
+
     }
 }

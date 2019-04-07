@@ -36,11 +36,23 @@ namespace ChallengeClub.Controllers
         public IActionResult EmployeeActivityManager([FromForm]string activityName, int activityHours, string activityDescription)
         {
 
-            activityDefinitionRepository.AddActivityDefinition(activityName,activityHours,activityDescription);
-           
-                ViewBag.Error = "The user is not exist.  Please Try Again.";
-                return View();
-           
+            activityDefinitionRepository.AddActivityDefinition(activityName, activityHours, activityDescription);
+
+            ViewBag.Error = "The user is not exist.  Please Try Again.";
+            return View();
+
         }
+
+        [HttpPost]
+        public IActionResult MakeList([FromForm]Array selectedArrary)
+        {
+
+            foreach(item in selectedArray)
+            {
+
+            }
+            return View();
+        }
+
     }
 }

@@ -24,85 +24,50 @@ namespace ChallengeClub.Controllers
         [HttpGet]
         public IActionResult MemberActivity()
         {
-            List<MemberActivity> DailyList = new List<MemberActivity>();
 
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 1,
-                ActivityName = "Bowling",
-                StartTime = "10 am",
-                ActivityImage = "/images/bowling.jpg",
-                IsCheck = false
+            IEnumerable<MemberActivity> memberActivity = activityRepository.GetActivities().Select(activity => {
+                return new MemberActivity
+                {
+                    ActivityName = activity.Name,
+                    ActivityId = activity.ActivityId,
+                    ActivityImage = activity.ImagePath,
+                    StartTime = activity.Description,
+                };
+
             });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 2,
-                ActivityName = "Pet Therapy",
-                StartTime = "1 pm",
-                ActivityImage = "/images/pet.png",
-                IsCheck = false
-            });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 3,
-                ActivityName = "Volunteer",
-                StartTime = "3 pm",
-                ActivityImage = "/images/volunteer.jpg",
-                IsCheck = false
-            });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 4,
-                ActivityName = "Whitey's Dinner",
-                StartTime = "6 pm",
-                ActivityImage = "/images/dinner.jpg",
-                IsCheck = false
-            });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 5,
-                ActivityName = "Dancing",
-                StartTime = "8 pm",
-                ActivityImage = "/images/dance.jpg",
-                IsCheck = false
-            });
-
-            //IEnumerable<Activity> activity = activityRepository.GetActivities();
 
             ActivityList ShowList = new ActivityList();
 
-            ShowList.DailyActs = DailyList;
+            ShowList.DailyActs = memberActivity.ToList();
 
-            ShowList.SelectedActs = new List<MemberActivity> { }; 
+            ShowList.SelectedActs = new List<MemberActivity> { };
 
             return View(ShowList);
         }
 
-    
+
 
         [HttpPost]
         public IActionResult MemberActivity(ActivityList ls)
         {
-            
+
             List<MemberActivity> TableList = new List<MemberActivity>();
 
-             foreach (var item in ls.DailyActs) {
-                 if (item.IsCheck) {
+            foreach (var item in ls.DailyActs)
+            {
+                if (item.IsCheck)
+                {
                     TableList.Add(item);
-                 }
-             }
-             ActivityList ConfirmList = new ActivityList();
-            
+                }
+            }
+            ActivityList ConfirmList = new ActivityList();
+
             ConfirmList.SelectedActs = TableList;
             ConfirmList.DailyActs = ls.DailyActs;
 
             return View(ConfirmList);
         }
 
-        
+
     }
 }

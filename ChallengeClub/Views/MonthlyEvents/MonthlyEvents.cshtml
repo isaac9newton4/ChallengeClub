@@ -71,11 +71,16 @@
         var month = d.getMonth();
         month = monthArr[month];
         month1 = month+" ";
+
+        var hr = document.createElement("hr");
+
         document.getElementById("eventDatePlace"+i).innerHTML = month1+day;
         document.getElementById("eventTitlePlace"+i).innerHTML = title;
+        document.getElementById("eventsByDate").appendChild(hr);
     i++
             }
 </script>
+
 
 @foreach (var item in ViewBag.Events)
 {

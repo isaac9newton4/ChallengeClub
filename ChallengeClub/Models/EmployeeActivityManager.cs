@@ -11,6 +11,7 @@ namespace ChallengeClub.Models
         public string Name { get; set; }
         public int Hours { get; set; }
         public string Description { get; set; }
+        public DateTime Date { get; set; }
     }
 
     public class EmployeeActivityDefinition

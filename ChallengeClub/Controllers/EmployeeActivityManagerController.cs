@@ -16,6 +16,7 @@ namespace ChallengeClub.Controllers
         public readonly IConfiguration configuration;
         public readonly ActivityRepository activityRepository;
         public readonly ActivityDefinitionRepositories activityDefinitionRepository;
+
         public EmployeeActivityManagerController(IConfiguration configuration)
         {
             this.configuration = configuration;
@@ -43,16 +44,19 @@ namespace ChallengeClub.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult MakeList([FromForm]Array selectedArrary)
+
+        public IActionResult GetName([FromForm]string queryName)
         {
 
-            foreach(item in selectedArray)
-            {
+            ViewBag.Submitted = this.activityDefinitionRepository.GetActivityDefinitionByName(queryName);
 
-            }
+            var date = new DateTime();
+            activityRepository.AddActivity(ViewBag.Submitted.Name, ViewBag.Submitted.Hours, ViewBag.Submitted.Description, date);
+
             return View();
         }
 
+
     }
+
 }

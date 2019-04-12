@@ -18,7 +18,7 @@ namespace ChallengeClub.Repositories
 
         public void AddActivityDefinition(string name, int hours, string description)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -32,7 +32,7 @@ namespace ChallengeClub.Repositories
 
         public IEnumerable<EmployeeActivityDefinition> GetActivityDefinition()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -46,7 +46,7 @@ namespace ChallengeClub.Repositories
 
         public IEnumerable<EmployeeActivityDefinition> GetActivityDefinitionByName(string name)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"

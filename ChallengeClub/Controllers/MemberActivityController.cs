@@ -5,65 +5,40 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ChallengeClub.Models;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using ChallengeClub.Repositories;
 
 namespace ChallengeClub.Controllers
 {
     [Route("MemberActivity")]
     public class MemberActivityController : Controller
     {
+        public readonly IConfiguration configuration;
+        public readonly ActivityRepository activityRepository;
+        public MemberActivityController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            activityRepository = new ActivityRepository(configuration);
+        }
+
         [HttpGet]
         public IActionResult MemberActivity()
         {
-            List<MemberActivity> DailyList = new List<MemberActivity>();
 
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 1,
-                ActivityName = "Bowling",
-                StartTime = "10 am",
-                ActivityImage = "/images/bowling.jpg",
-                IsCheck = false
-            });
+            IEnumerable<MemberActivity> memberActivity = activityRepository.GetActivities().Select(activity => {
+                return new MemberActivity
+                {
+                    ActivityName = activity.Name,
+                    ActivityId = activity.ActivityId,
+                    ActivityImage = activity.ImagePath,
+                    StartTime = activity.Description,
+                };
 
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 2,
-                ActivityName = "Pet Therapy",
-                StartTime = "1 pm",
-                ActivityImage = "/images/pet.png",
-                IsCheck = false
-            });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 3,
-                ActivityName = "Volunteer",
-                StartTime = "3 pm",
-                ActivityImage = "/images/volunteer.jpg",
-                IsCheck = false
-            });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 4,
-                ActivityName = "Whitey's Dinner",
-                StartTime = "6 pm",
-                ActivityImage = "/images/dinner.jpg",
-                IsCheck = false
-            });
-
-            DailyList.Add(new MemberActivity()
-            {
-                ActivityId = 5,
-                ActivityName = "Dancing",
-                StartTime = "8 pm",
-                ActivityImage = "/images/dance.jpg",
-                IsCheck = false
             });
 
             ActivityList ShowList = new ActivityList();
 
-            ShowList.DailyActs = DailyList;
+            ShowList.DailyActs = memberActivity.ToList();
 
             ShowList.SelectedActs = new List<MemberActivity> { }; 
 

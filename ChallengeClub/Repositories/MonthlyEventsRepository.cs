@@ -5,43 +5,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChallengeClub.Models;
-
 namespace ChallengeClub.Repositories
 {
-    public class MemberRepository
+    public class MonthlyEventsRepository
     {
         public readonly IConfiguration configuration;
-        public MemberRepository(IConfiguration configuration)
+        public MonthlyEventsRepository(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
 
-        public IEnumerable<Member> GetMembers()
+        public void AddMonthlyEvent(string title, DateTime date, string description)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT m.*
-                    FROM Member m
+                    INSERT INTO MonthlyEvents(Title,Date,Description)
+                    VALUES(@Title,@Date,@Description)
                 ";
 
-                return connection.Query<Member>(query);
+                connection.Execute(query, new { Title = title, Date = date, Description = description });
             }
         }
-
-        public Member GetMemberById(string number)
+        public IEnumerable<MonthlyEvents> GetMonthlyEvents()
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT m.*
-                    FROM Member m
-                    WHERE m.MemberNumber = @Number
+                    SELECT a.*
+                    FROM MonthlyEvents a
+                    ORDER BY Date
+
                 ";
-      
-                return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
+
+                return connection.Query<MonthlyEvents>(query);
             }
         }
     }

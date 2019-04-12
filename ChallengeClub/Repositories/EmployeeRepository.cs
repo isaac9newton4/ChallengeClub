@@ -1,48 +1,49 @@
-﻿using Dapper;
+﻿using ChallengeClub.Models;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
-    public class MemberRepository
+    public class EmployeeRepository
     {
         public readonly IConfiguration configuration;
-        public MemberRepository(IConfiguration configuration)
+        public EmployeeRepository(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
 
-        public IEnumerable<Member> GetMembers()
+        public IEnumerable<Employee> GetEmployee()
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT m.*
-                    FROM Member m
+                    SELECT e.*
+                    FROM Employee e
                 ";
 
-                return connection.Query<Member>(query);
+                return connection.Query<Employee>(query);
             }
         }
 
-        public Member GetMemberById(string number)
+        public Employee GetEmployeeByUsername(string userName)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    SELECT m.*
-                    FROM Member m
-                    WHERE m.MemberNumber = @Number
+                    SELECT e.*
+                    FROM Employee e
+                    WHERE e.UserName = @Username
                 ";
-      
-                return connection.QuerySingleOrDefault<Member>(query, new { Number = number });
+
+                return connection.QuerySingleOrDefault<Employee>(query, new { Username = userName });
             }
         }
+
     }
 }

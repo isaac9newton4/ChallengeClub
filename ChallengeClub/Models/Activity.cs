@@ -9,5 +9,7 @@ namespace ChallengeClub.Models
     {
         public int ActivityId { get; set; }
         public string Name { get; set; }
+        public string ImagePath { get; set; }
+        public string Description { get; set; }
     }
 }

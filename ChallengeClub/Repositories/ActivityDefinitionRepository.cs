@@ -8,60 +8,55 @@ using ChallengeClub.Models;
 
 namespace ChallengeClub.Repositories
 {
-    public class ActivityRepository
+    public class ActivityDefinitionRepositories
     {
         public readonly IConfiguration configuration;
-
-        public ActivityRepository(IConfiguration configuration)
+        public ActivityDefinitionRepositories(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
 
-        public IEnumerable<Activity> GetActivities()
+        public void AddActivityDefinition(string name, int hours, string description)
+        {
+            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
+            {
+                const string query = @"
+                    INSERT INTO ActivityDefinition(Name,Hours,Description)
+                    VALUES(@Name,@Hours,@Description)
+                ";
+
+                connection.Execute(query, new { Name = name, Hours = hours, Description = description });
+            }
+        }
+
+        public IEnumerable<EmployeeActivityDefinition> GetActivityDefinition()
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
                     SELECT a.*
-                    FROM Activity a
+                    FROM ActivityDefinition a
                 ";
 
-                return connection.Query<Activity>(query);
+                return connection.Query<EmployeeActivityDefinition>(query);
             }
         }
 
-        public Activity GetActivityById(string id)
+        public IEnumerable<EmployeeActivityDefinition> GetActivityDefinitionByName(string name)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
                     SELECT a.*
-                    FROM Activity a
-                    WHERE a.ActivityId = @Id
+                    FROM ActivityDefinition a
+                    WHERE a.Name = @Name
                 ";
 
-                return connection.QuerySingleOrDefault<Activity>(query, new { Id = id });
+                return connection.Query<EmployeeActivityDefinition>(query, new { Name = name });
             }
         }
-
-        public void AddActivity(string name, int hours, string description, DateTime date)
-        {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
-            using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
-            {
-                const string query = @"
-                    INSERT INTO Activity(Name,Hours,Description,Date)
-                    VALUES(@Name,@Hours,@Description,@Date)
-                ";
-
-                connection.Execute(query, new { Name = name, Hours = hours, Description = description, Date = date });
-            }
-        }
-
-
-
-
     }
 }

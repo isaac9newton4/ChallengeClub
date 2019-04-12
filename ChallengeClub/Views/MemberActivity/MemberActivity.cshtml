@@ -57,9 +57,9 @@
                 @using (Html.BeginForm("MemberActivity", "MemberActivity"))
                 {
 
-                <tr class="table-success">
-                    <th>Time</th>
-                    <th>Activity</th>
+                <tr>
+                    <td>Time</td>
+                    <td>Activity</td>
                    
                 </tr>
                     for (int i = 0; i < Model.SelectedActs.Count; i++)
@@ -73,7 +73,7 @@
 
                 }
             </table>
-            <a asp-controller="Logout" asp-action="Logout"><input class="gradient-button gradient-button-2" type="button" value="Confirm"></a>
+            <a asp-controller="Logout" asp-action="Logout"><input class="gradient-button gradient-button-2" type="submit" value="Confirm"></a>
         </div>
         </div>
 </body>

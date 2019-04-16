@@ -18,7 +18,7 @@ namespace ChallengeClub.Repositories
 
         public IEnumerable<Employee> GetEmployee()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -32,7 +32,7 @@ namespace ChallengeClub.Repositories
 
         public Employee GetEmployeeByUsername(string userName)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"

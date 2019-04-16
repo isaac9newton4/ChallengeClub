@@ -19,7 +19,7 @@ namespace ChallengeClub.Repositories
 
         public IEnumerable<Activity> GetActivities()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -33,7 +33,7 @@ namespace ChallengeClub.Repositories
 
         public Activity GetActivityById(string id)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -48,7 +48,7 @@ namespace ChallengeClub.Repositories
 
         public void AddActivity(string name, int hours)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 DateTime date = DateTime.Now.Date;

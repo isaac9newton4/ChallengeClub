@@ -22,4 +22,13 @@ namespace ChallengeClub.Models
         public string Description { get; set; }
 
     }
+
+    public class EmployeeActivityModel
+    {
+        public int ActivityId { get; set; }
+        public string Name { get; set; }
+        public int Hours { get; set; }
+        public string Description { get; set; } = string.Empty;
+        public DateTime Date { get; set; }
+    }
 }

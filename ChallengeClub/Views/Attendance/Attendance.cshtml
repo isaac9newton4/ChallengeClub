@@ -1,5 +1,26 @@
-﻿@{
+﻿@model ChallengeClub.Models.AttendanceModel;
+@{
     ViewData["Title"] = "Attendance";
 }
 
-<h1>This is the attendance page.</h1>
+    <h2 id="body"></h2>
+
+
+
+    <script>
+  function Display(name)
+   {
+        var text = document.createTextNode(name);
+        var b = document.createElement("br");
+        document.getElementById("body").appendChild(text);
+        document.getElementById("body").appendChild(b);
+
+    }
+
+    </script>
+
+
+@foreach (var item in Model.MemberAttendance)
+    {
+        <script>Display("@item.Name");</script>
+    }

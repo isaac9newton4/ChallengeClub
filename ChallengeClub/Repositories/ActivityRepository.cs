@@ -46,22 +46,26 @@ namespace ChallengeClub.Repositories
             }
         }
 
-        public void AddActivity(string name, int hours, string description, DateTime date)
+        public void AddActivity(string name, int hours)
         {
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
+                DateTime date = DateTime.Now.Date;
+                var description = "x";
+                var imagePath = "x";
                 const string query = @"
-                    INSERT INTO Activity(Name,Hours,Description,Date)
-                    VALUES(@Name,@Hours,@Description,@Date)
+                    INSERT INTO ActivityDefinition(Name,Hours,ImagePath,Description,Date)
+                    VALUES(@Name,@Hours,@ImagePath,@Description,@Date)
                 ";
 
-                connection.Execute(query, new { Name = name, Hours = hours, Description = description, Date = date });
+                connection.Execute(query, new { Name = name, Hours = hours,ImagePath = imagePath,Description = description, Date = date });
             }
+        }
         }
 
 
 
 
     }
-}
+

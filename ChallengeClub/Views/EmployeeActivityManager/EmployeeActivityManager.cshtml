@@ -81,7 +81,7 @@
 
 
                     </div>
-                    <form>
+                    <form method="post" action="/EmployeeActivityManager/activities" id="activityForm" enctype="multipart/form-data">
                         <div class="modal-body" id="confirmBody">
                             <h3 id="yesMsg1"></h3>
                             <div id="noMsg"></div>
@@ -89,7 +89,7 @@
                             <h3 id="yesMsg2"></h3>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" id="confirmButton1"  style="width:10%;height:50px;" class="btn btn-default" data-dismiss="modal" ></input>
+                            <input type="submit" id="confirmButton1"  style="width:10%;height:50px;" class="btn btn-default" />
                             <button id="confirmButton2" type="button" style="width:10%;height:50px;" class="btn btn-default" data-dismiss="modal"></button>
                         </div>
                     </form>
@@ -102,7 +102,8 @@
 </html>
 
 <script>
-
+    function submitForm() {
+    }
 
 
 function makeButton(name,hrs,description)
@@ -164,13 +165,15 @@ function makeButton(name,hrs,description)
     var t02 = document.createTextNode(text2);
     var b2 = document.createElement("br");
     var t11 = document.createElement("input");
+   
     t11.readOnly = true;
     t11.setAttribute("value",text1);
-    t11.setAttribute("name","queryName");
+    t11.setAttribute("name","Activities[" + i + "].Name");
     t11.setAttribute("style","background-color: lightblue");
     var t12 = document.createElement("input");
     t12.readOnly = true;
-    t12.setAttribute("value",text2);
+    t12.setAttribute("value",hrs);
+    t12.setAttribute("name","Activities[" + i + "].Hours");
     t12.setAttribute("style","background-color: lightblue");
     var b3 = document.createElement("br");
     b3.setAttribute("id","break");

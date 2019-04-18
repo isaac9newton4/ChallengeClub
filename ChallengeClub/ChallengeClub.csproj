@@ -20,6 +20,7 @@
     <Folder Include="Views\MonthlyReport\" />
     <Folder Include="Views\Attendance\" />
     <Folder Include="Views\MonthlyEvents\" />
+    <Folder Include="Views\EditMember\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\EmployeeDashboardHome\_ELayout.cshtml" />

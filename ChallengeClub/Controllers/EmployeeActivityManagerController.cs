@@ -27,11 +27,17 @@ namespace ChallengeClub.Controllers
         [HttpGet]
         public IActionResult EmployeeActivityManager()
         {
-            ViewBag.Activities = this.activityDefinitionRepository.GetActivityDefinition();
-            return View();
+            var result = this.activityDefinitionRepository.GetActivityDefinition();
 
+            var model = new ActivityManagerModel
+            {
+                EmployeeActivityDefinitions = result
+            };
 
+            return View("EmployeeActivityManager", model);
         }
+
+
 
         [HttpPost]
         public IActionResult EmployeeActivityManager([FromForm]string activityName, int activityHours, string activityDescription)
@@ -39,7 +45,6 @@ namespace ChallengeClub.Controllers
 
             activityDefinitionRepository.AddActivityDefinition(activityName, activityHours, activityDescription);
 
-            ViewBag.Error = "The user is not exist.  Please Try Again.";
             return View();
 
         }
@@ -56,23 +61,30 @@ namespace ChallengeClub.Controllers
         //    return View();
         //}
 
-        [HttpPost("activities")]
-        public IActionResult AddActivities([FromForm]AddActivityModel activities)
+        //[HttpPost("activities")]
+        //public IActionResult AddActivities([FromForm]AddActivityModel activities)
+        //{
+
+
+        //    foreach(var act in activities.Activities)
+        //    {
+        //        activityRepository.AddActivity(act.Name, act.Hours);
+        //    }
+
+        //    return RedirectToAction("EmployeeActivityManager");
+        //}
+
+        [HttpPost ("activities")]
+        public IActionResult EmployeeActivityAdd([FromForm]string submittedName, int submittedHours )
         {
-           
-
-            foreach(var act in activities.Activities)
-            {
-                activityRepository.AddActivity(act.Name, act.Hours);
-            }
-
+            activityRepository.AddActivity(submittedName, submittedHours);
             return RedirectToAction("EmployeeActivityManager");
         }
     }
 
-    public class AddActivityModel
-    {
-        public IEnumerable<EmployeeActivityModel> Activities { get; set; }
-    }
+    //public class AddActivityModel
+    //{
+    //    public IEnumerable<EmployeeActivityModel> Activities { get; set; }
+    //}
 
 }

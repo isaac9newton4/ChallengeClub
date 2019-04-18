@@ -16,7 +16,7 @@ namespace ChallengeClub.Repositories
             }
             public IEnumerable<MemberAttendance> GetAttendanceByDate()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 //DateTime date = DateTime.Now.Date; 

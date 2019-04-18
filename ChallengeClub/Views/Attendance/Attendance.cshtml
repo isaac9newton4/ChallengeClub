@@ -3,24 +3,13 @@
     ViewData["Title"] = "Attendance";
 }
 
-    <h2 id="body"></h2>
-
-
-
-    <script>
-  function Display(name)
-   {
-        var text = document.createTextNode(name);
-        var b = document.createElement("br");
-        document.getElementById("body").appendChild(text);
-        document.getElementById("body").appendChild(b);
-
-    }
-
-    </script>
-
-
-@foreach (var item in Model.MemberAttendance)
+<div id="body">
+    @foreach (var item in Model.MemberAttendance)
     {
-        <script>Display("@item.Name");</script>
+    <h3><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome">@item.Name</a></h3>
+
     }
+
+</div>
+
+

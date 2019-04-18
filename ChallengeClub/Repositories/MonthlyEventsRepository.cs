@@ -15,7 +15,7 @@ namespace ChallengeClub.Repositories
             this.configuration = configuration;
         }
 
-        public void AddMonthlyEvent(string title, DateTime date, string description)
+        public void AddMonthlyEvent(string title, string date, string description)
         {
             var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
@@ -33,6 +33,8 @@ namespace ChallengeClub.Repositories
             var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
+               
+
                 const string query = @"
                     SELECT a.*
                     FROM MonthlyEvents a

@@ -32,7 +32,6 @@ namespace ChallengeClub.Controllers
         [HttpGet]
         public IActionResult Attendance()
         {
-            //var model = new MemberAttendance { MemberLoginId =  };
 
 
             var result = this.memberLoginRepository.GetAttendanceByDate();

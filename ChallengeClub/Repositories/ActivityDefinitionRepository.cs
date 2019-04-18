@@ -21,6 +21,7 @@ namespace ChallengeClub.Repositories
             var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
+
                 const string query = @"
                     INSERT INTO ActivityDefinition(Name,Hours,Description)
                     VALUES(@Name,@Hours,@Description)

@@ -48,15 +48,16 @@ namespace ChallengeClub.Repositories
 
         public void CreateMemberActivity(string memberId, string activityId)
         {
+            DateTime today = DateTime.Today;
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
-                    INSERT INTO MemberActivity (MemberId, ActivityId)
-                    VALUES (@MemberId, @ActivityId)
+                    INSERT INTO MemberActivity (MemberId, ActivityId, ActivityDate)
+                    VALUES (@MemberId, @ActivityId, @ActivityDate)
                 ";
 
-                connection.Execute(query, new { MemberId = memberId, ActivityId = activityId });
+                connection.Execute(query, new { MemberId = memberId, ActivityId = activityId, ActivityDate = today });
             }
         }
         public void DeleteMemberActivity(int memberActivityId)

@@ -14,20 +14,26 @@ namespace ChallengeClub.Controllers
     public class MemberActivityController : Controller
     {
         public readonly IConfiguration configuration;
+        public readonly MemberRepository memberRepository;
         public readonly ActivityRepository activityRepository;
+        public readonly MemberActivityRepository memberActivityRepo;
         public MemberActivityController(IConfiguration configuration)
         {
             this.configuration = configuration;
+            memberRepository = new MemberRepository(configuration);
             activityRepository = new ActivityRepository(configuration);
+            memberActivityRepo = new MemberActivityRepository(configuration);
         }
 
-        [HttpGet]
-        public IActionResult MemberActivity()
+        [HttpGet("{memberId}")]
+        public IActionResult MemberActivity(string memberId)
         {
 
             IEnumerable<MemberActivity> memberActivity = activityRepository.GetActivities().Select(activity => {
                 return new MemberActivity
                 {
+                    MemberId = int.Parse(memberId),
+                    Member = memberId,
                     ActivityName = activity.Name,
                     ActivityId = activity.ActivityId,
                     ActivityImage = activity.ImagePath,
@@ -45,10 +51,8 @@ namespace ChallengeClub.Controllers
             return View(ShowList);
         }
 
-
-
         [HttpPost]
-        public IActionResult MemberActivity(ActivityList ls)
+        public IActionResult PostMemberActivity([FromForm]ActivityList ls)
         {
 
             List<MemberActivity> TableList = new List<MemberActivity>();
@@ -65,9 +69,20 @@ namespace ChallengeClub.Controllers
             ConfirmList.SelectedActs = TableList;
             ConfirmList.DailyActs = ls.DailyActs;
 
-            return View(ConfirmList);
+
+            return View("MemberActivity", ConfirmList);
         }
 
+        [HttpPost("PostMemberActivity")]
+        public IActionResult Confirm([FromForm]ActivityList activityList) {
 
+            foreach(var act in activityList.SelectedActs)
+            {
+                memberActivityRepo.CreateMemberActivity(act.MemberId.ToString(), act.ActivityId.ToString());
+            }
+            //memberActivityRepo.CreateMemberActivity(memberId, activityId);
+
+            return View("Views/Logout/Logout.cshtml");
+        }
     }
 }

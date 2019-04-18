@@ -59,9 +59,12 @@ namespace ChallengeClub.Repositories
                 connection.Execute(query, new { Name = name, Hours = hours, Description = description, Date = date });
             }
         }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> jing/test
     }
 }

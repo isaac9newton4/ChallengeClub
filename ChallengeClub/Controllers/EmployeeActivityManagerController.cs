@@ -59,4 +59,8 @@ namespace ChallengeClub.Controllers
 
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> jing/test

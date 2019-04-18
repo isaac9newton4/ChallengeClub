@@ -59,4 +59,8 @@ namespace ChallengeClub.Repositories
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> jing/test

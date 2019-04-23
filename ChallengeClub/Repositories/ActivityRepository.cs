@@ -62,16 +62,7 @@ namespace ChallengeClub.Repositories
                 connection.Execute(query, new { Name = name, Hours = hours, ImagePath = imagePath, Description = description, Date = date });
             }
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        }
->>>>>>> b06af94d259380ab092ee6a6a142c47f9bbcc2f2
-
-
-
-
-=======
->>>>>>> jing/test
     }
+}
+    
 

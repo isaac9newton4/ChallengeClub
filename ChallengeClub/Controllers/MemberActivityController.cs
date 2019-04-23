@@ -32,11 +32,10 @@ namespace ChallengeClub.Controllers
             IEnumerable<MemberActivity> memberActivity = activityRepository.GetActivities().Select(activity => {
                 return new MemberActivity
                 {
-<<<<<<< HEAD
-=======
+
                     MemberId = int.Parse(memberId),
                     Member = memberId,
->>>>>>> jing/test
+
                     ActivityName = activity.Name,
                     ActivityId = activity.ActivityId,
                     ActivityImage = activity.ImagePath,

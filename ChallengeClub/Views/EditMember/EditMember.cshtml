@@ -1,0 +1,88 @@
+﻿@model ChallengeClub.Models.MemberModel;
+
+
+@{
+    ViewData["Title"] = "Edit Members";
+}
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<div id="editMember" class="col-md-9">
+
+    <button type="button" style="height:50px; background-color:#030B85;float:right" class="btn btn-info btn-lg" data-toggle="modal" data-target="#newMemberModal">+ Add New Member</button>
+
+    <h5>Use the "+Add Member" button to add a new member.</h5>
+    <h5>Use the "edit" button to view and edit a member's information.</h5>
+    <h5>Use the "delete" button to remove a member.</h5>
+
+    <div id="body">
+
+        @foreach (var item in Model.Member)
+        {
+        <form>
+            <table>
+                <tr>
+                    <td style="width:150%" name="member_@item.MemberId"><h4>@item.Name</h4></td>
+                    <td><button name="@item.MemberId" style="border-radius:7px;color:whitesmoke;background-color:darkred">edit</button></td>
+                    <td><input name="memberId" type="text" value="@item.MemberId" hidden /></td>
+                    <td><input value="delete" type="submit" name="@item.MemberId" style="border-radius:7px;color:whitesmoke;background-color:darkred" /></td>
+                </tr>
+            </table>
+        </form>
+            <hr />
+        }
+    </div>
+    <div class="modal fade" id="newMemberModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h2 class="modal-title">Add New Member</h2>
+                </div>
+                <form method="post" onsubmit="setTimeout(function(){window.location.reload();},10)">
+                    <div class="modal-body">
+
+
+                        <h3>Name: </h3>
+                        <input type="text" name="newMemberName" required /><br />
+                        <h3>Member Number: </h3>
+                        <input type="text" name="newMemberNumber" required /><br />
+                        <h3>Date of Birth: </h3>
+                        <input name="newMemberDOB" type="date" />
+                        <h3>Icon: </h3>
+                        <input type="file" name="newMemberIconPath" />
+                        <h3>Current Address: </h3>
+                        <input type="text" name="newMemberAddress" required /><br />
+                        <h3>City: </h3>
+                        <input type="text" name="newMemberCity" required /><br />
+                        <h3>State: </h3>
+                        <input type="text" name="newMemberState" required /><br />
+                        <h3>ZIP Code: </h3>
+                        <input type="text" name="newMemberZIP" required /><br />
+                        <h3>Goals: </h3>
+                        Advocacy: <input name="newMemberAdvocacyGoal" type="checkbox" />
+                        Job Skills: <input name="newMemberJobGoal" type="checkbox" />
+                        Social: <input name="newMemberSocialGoal" type="checkbox" />
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" style="width:10%;height:50px;" class="btn btn-default" name="newMemberSubmit"></input>
+                        <button type="button" style="width:10%;height:50px;" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</html>

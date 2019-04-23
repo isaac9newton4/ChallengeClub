@@ -27,12 +27,17 @@ namespace ChallengeClub.Controllers
         [HttpGet]
         public IActionResult MonthlyEvents()
         {
-            ViewBag.Events = this.monthlyEventsRepository.GetMonthlyEvents();
-            return View();
+            var result = this.monthlyEventsRepository.GetMonthlyEvents();
+
+            var model = new EventsModel
+            {
+                MonthlyEvents = result
+            };
+            return View("MonthlyEvents", model);
         }
 
         [HttpPost]
-        public IActionResult MonthlyEvents([FromForm]string eventTitle, DateTime eventDate, string eventDescription)
+        public IActionResult MonthlyEvents([FromForm]string eventTitle, string eventDate, string eventDescription)
         {
 
             monthlyEventsRepository.AddMonthlyEvent(eventTitle, eventDate, eventDescription);

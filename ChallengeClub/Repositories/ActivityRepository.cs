@@ -19,7 +19,7 @@ namespace ChallengeClub.Repositories
 
         public IEnumerable<Activity> GetActivities()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -33,7 +33,7 @@ namespace ChallengeClub.Repositories
 
         public Activity GetActivityById(string id)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -46,20 +46,27 @@ namespace ChallengeClub.Repositories
             }
         }
 
-        public void AddActivity(string name, int hours, string description, DateTime date)
+        public void AddActivity(string name, int hours)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
+                DateTime date = DateTime.Now.Date;
+                var description = "x";
+                var imagePath = "x";
                 const string query = @"
-                    INSERT INTO Activity(Name,Hours,Description,Date)
-                    VALUES(@Name,@Hours,@Description,@Date)
+                    INSERT INTO Activity(Name,Hours,ImagePath,Description,Date)
+                    VALUES(@Name,@Hours,@ImagePath,@Description,@Date)
                 ";
 
-                connection.Execute(query, new { Name = name, Hours = hours, Description = description, Date = date });
+                connection.Execute(query, new { Name = name, Hours = hours, ImagePath = imagePath, Description = description, Date = date });
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        }
+>>>>>>> b06af94d259380ab092ee6a6a142c47f9bbcc2f2
 
 
 
@@ -67,4 +74,4 @@ namespace ChallengeClub.Repositories
 =======
 >>>>>>> jing/test
     }
-}
+

@@ -19,7 +19,7 @@ namespace ChallengeClub.Repositories
 
         public IEnumerable<MemberActivity> GetMemberActivities()
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -33,7 +33,7 @@ namespace ChallengeClub.Repositories
 
         public MemberActivity GetMemberActivityById(string id)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -48,8 +48,12 @@ namespace ChallengeClub.Repositories
 
         public void CreateMemberActivity(string memberId, string activityId)
         {
+<<<<<<< HEAD
             DateTime today = DateTime.Today;
             var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+=======
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
+>>>>>>> b06af94d259380ab092ee6a6a142c47f9bbcc2f2
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"
@@ -62,7 +66,7 @@ namespace ChallengeClub.Repositories
         }
         public void DeleteMemberActivity(int memberActivityId)
         {
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
                 const string query = @"

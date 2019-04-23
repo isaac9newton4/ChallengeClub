@@ -1,5 +1,15 @@
-﻿@{
+﻿@model ChallengeClub.Models.AttendanceModel;
+@{
     ViewData["Title"] = "Attendance";
 }
 
-<h1>This is the attendance page.</h1>
+<div id="body">
+    @foreach (var item in Model.MemberAttendance)
+    {
+    <h3><a asp-controller="EmployeeDashboardHome" asp-action="EmployeeDashboardHome">@item.Name</a></h3>
+
+    }
+
+</div>
+
+

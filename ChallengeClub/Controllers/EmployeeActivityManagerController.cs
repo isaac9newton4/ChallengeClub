@@ -27,11 +27,17 @@ namespace ChallengeClub.Controllers
         [HttpGet]
         public IActionResult EmployeeActivityManager()
         {
-            ViewBag.Activities = this.activityDefinitionRepository.GetActivityDefinition();
-            return View();
+            var result = this.activityDefinitionRepository.GetActivityDefinition();
 
+            var model = new ActivityManagerModel
+            {
+                EmployeeActivityDefinitions = result
+            };
 
+            return View("EmployeeActivityManager", model);
         }
+
+
 
         [HttpPost]
         public IActionResult EmployeeActivityManager([FromForm]string activityName, int activityHours, string activityDescription)
@@ -39,28 +45,54 @@ namespace ChallengeClub.Controllers
 
             activityDefinitionRepository.AddActivityDefinition(activityName, activityHours, activityDescription);
 
-            ViewBag.Error = "The user is not exist.  Please Try Again.";
             return View();
 
         }
 
 
-        public IActionResult GetName([FromForm]string queryName)
+        //public IActionResult GetName([FromForm]string queryName)
+        //{
+
+        //    ViewBag.Submitted = this.activityDefinitionRepository.GetActivityDefinitionByName(queryName);
+
+        //    var date = new DateTime();
+        //    activityRepository.AddActivity(ViewBag.Submitted.Name, ViewBag.Submitted.Hours, ViewBag.Submitted.Description, date);
+
+        //    return View();
+        //}
+
+        //[HttpPost("activities")]
+        //public IActionResult AddActivities([FromForm]AddActivityModel activities)
+        //{
+
+
+        //    foreach(var act in activities.Activities)
+        //    {
+        //        activityRepository.AddActivity(act.Name, act.Hours);
+        //    }
+
+        //    return RedirectToAction("EmployeeActivityManager");
+        //}
+
+        [HttpPost ("activities")]
+        public IActionResult EmployeeActivityAdd([FromForm]string submittedName, int submittedHours )
         {
-
-            ViewBag.Submitted = this.activityDefinitionRepository.GetActivityDefinitionByName(queryName);
-
-            var date = new DateTime();
-            activityRepository.AddActivity(ViewBag.Submitted.Name, ViewBag.Submitted.Hours, ViewBag.Submitted.Description, date);
-
-            return View();
+            activityRepository.AddActivity(submittedName, submittedHours);
+            return RedirectToAction("EmployeeActivityManager");
         }
-
-
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 =======
 }
 >>>>>>> jing/test
+=======
+    //public class AddActivityModel
+    //{
+    //    public IEnumerable<EmployeeActivityModel> Activities { get; set; }
+    //}
+
+}
+>>>>>>> b06af94d259380ab092ee6a6a142c47f9bbcc2f2

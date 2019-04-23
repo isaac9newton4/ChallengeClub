@@ -17,6 +17,7 @@ namespace ChallengeClub.Controllers
         public readonly MemberRepository memberRepository;
         public readonly ActivityRepository activityRepository;
         public readonly MemberActivityRepository memberActivityRepo;
+
         public MemberActivityController(IConfiguration configuration)
         {
             this.configuration = configuration;
@@ -26,15 +27,14 @@ namespace ChallengeClub.Controllers
         }
 
         [HttpGet("{memberId}")]
-        public IActionResult MemberActivity(string memberId)
+        public IActionResult MemberActivity(int memberId)
         {
 
             IEnumerable<MemberActivity> memberActivity = activityRepository.GetActivities().Select(activity => {
                 return new MemberActivity
                 {
 
-                    MemberId = int.Parse(memberId),
-                    Member = memberId,
+                    MemberId = memberId,
 
                     ActivityName = activity.Name,
                     ActivityId = activity.ActivityId,
@@ -80,9 +80,9 @@ namespace ChallengeClub.Controllers
 
             foreach(var act in activityList.SelectedActs)
             {
-                memberActivityRepo.CreateMemberActivity(act.MemberId.ToString(), act.ActivityId.ToString());
+                memberActivityRepo.CreateMemberActivity(act.MemberId, act.ActivityId);
             }
-            //memberActivityRepo.CreateMemberActivity(memberId, activityId);
+        
 
             return View("Views/Logout/Logout.cshtml");
         }

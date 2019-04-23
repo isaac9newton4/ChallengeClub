@@ -46,11 +46,12 @@ namespace ChallengeClub.Repositories
             }
         }
 
-        public void CreateMemberActivity(string memberId, string activityId)
+
+        public void CreateMemberActivity(int memberId, int activityId)
         {
 
             DateTime today = DateTime.Today;
-            var connectionString = configuration.GetConnectionString("ClubChallengeDB");
+            var connectionString = configuration.GetConnectionString("ChallengeClubDB");
 
             using (var connection = SqlConnectionFactory.GetSqlConnection(connectionString))
             {
@@ -62,6 +63,7 @@ namespace ChallengeClub.Repositories
                 connection.Execute(query, new { MemberId = memberId, ActivityId = activityId, ActivityDate = today });
             }
         }
+
         public void DeleteMemberActivity(int memberActivityId)
         {
             var connectionString = configuration.GetConnectionString("ChallengeClubDB");
